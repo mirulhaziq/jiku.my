@@ -14,6 +14,7 @@ export function Hero() {
       <div className="mt-8 flex flex-wrap gap-3">
         <a
           href={PROFILE.resumeHref}
+          download="Amirul-Haziq-Resume.pdf"
           className="rounded-full bg-fg text-bg px-6 py-3 text-sm font-medium transition hover:opacity-90"
         >
           View resume

@@ -35,6 +35,7 @@ export function Contact() {
         </a>
         <a
           href={PROFILE.resumeHref}
+          download="Amirul-Haziq-Resume.pdf"
           className="rounded-full border border-border px-6 py-3 text-sm font-medium transition hover:bg-card"
         >
           Resume PDF

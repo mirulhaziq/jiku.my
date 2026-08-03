@@ -58,6 +58,7 @@ export function IntroAnimation({ children }: { children: React.ReactNode }) {
       {overlayVisible && (
         <div
           aria-hidden="true"
+          onClick={phase === 'playing' ? startFade : undefined}
           style={{
             position: 'fixed',
             inset: 0,
@@ -68,20 +69,38 @@ export function IntroAnimation({ children }: { children: React.ReactNode }) {
             opacity: phase === 'fading' ? 0 : 1,
             transition: `opacity ${FADE_MS}ms ease-out`,
             pointerEvents: phase === 'fading' ? 'none' : 'auto',
+            cursor: phase === 'playing' ? 'pointer' : 'default',
           }}
         >
           {phase === 'playing' && (
-            <div style={{ width: 'min(70vw, 520px)', aspectRatio: '1 / 1' }}>
-              <DotLottieReact
-                src="/hello-apple.lottie"
-                autoplay
-                loop={false}
-                dotLottieRefCallback={(dotLottie: DotLottie | null) => {
-                  dotLottie?.addEventListener('complete', startFade);
+            <>
+              <div style={{ width: 'min(70vw, 520px)', aspectRatio: '1 / 1' }}>
+                <DotLottieReact
+                  src="/hello-apple.lottie"
+                  autoplay
+                  loop={false}
+                  dotLottieRefCallback={(dotLottie: DotLottie | null) => {
+                    dotLottie?.addEventListener('complete', startFade);
+                  }}
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </div>
+              <p
+                style={{
+                  position: 'absolute',
+                  bottom: '2.5rem',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  color: '#6b7280',
+                  fontSize: '0.8125rem',
+                  letterSpacing: '0.02em',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif',
+                  userSelect: 'none',
                 }}
-                style={{ width: '100%', height: '100%' }}
-              />
-            </div>
+              >
+                Tap anywhere to skip
+              </p>
+            </>
           )}
         </div>
       )}
