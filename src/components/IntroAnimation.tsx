@@ -1,10 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { DotLottieReact, type DotLottie } from '@lottiefiles/dotlottie-react';
+import { DotLottieReact, setWasmUrl, type DotLottie } from '@lottiefiles/dotlottie-react';
+
+// Serve the renderer WASM from our own /public so the animation doesn't
+// depend on a third-party CDN. Without this the Lottie renders as a
+// black square until the CDN responds (or forever if it's blocked).
+setWasmUrl('/dotlottie-player.wasm');
 
 const FADE_MS = 500;
-const FALLBACK_TIMEOUT_MS = 3000;
+const FALLBACK_TIMEOUT_MS = 5000;
 
 type Phase = 'idle' | 'playing' | 'fading' | 'done';
 
