@@ -1,12 +1,15 @@
-import { Reveal } from '../Reveal';
+import { Section } from '../Section';
 
 export function Journal() {
   return (
-    <section className="mx-auto max-w-5xl px-6 py-24 md:py-32">
-      <Reveal>
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Journal</h2>
-        <p className="text-muted">Coming soon — personal writing lives here.</p>
-      </Reveal>
-    </section>
+    <Section
+      kicker="Journal"
+      title="Notes from the build"
+      intro="Coming soon — personal writing on what I'm learning, shipping, and reconsidering."
+    >
+      <div className="rounded-card border border-dashed border-border bg-card/50 p-8 text-center">
+        <p className="text-muted text-sm">First posts will land here.</p>
+      </div>
+    </Section>
   );
 }

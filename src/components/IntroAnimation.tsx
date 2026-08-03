@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { DotLottieReact, type DotLottie } from '@lottiefiles/dotlottie-react';
 
-const SESSION_KEY = 'intro-played';
 const FADE_MS = 500;
 const FALLBACK_TIMEOUT_MS = 3000;
 
@@ -15,10 +14,8 @@ export function IntroAnimation({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const alreadyPlayed = window.sessionStorage.getItem(SESSION_KEY);
 
-    if (alreadyPlayed || reduced) {
-      if (reduced) window.sessionStorage.setItem(SESSION_KEY, '1');
+    if (reduced) {
       setPhase('done');
       return;
     }
@@ -42,7 +39,6 @@ export function IntroAnimation({ children }: { children: React.ReactNode }) {
       window.clearTimeout(fallbackTimeoutRef.current);
       fallbackTimeoutRef.current = null;
     }
-    window.sessionStorage.setItem(SESSION_KEY, '1');
     setPhase('fading');
     window.setTimeout(() => {
       document.body.style.overflow = '';

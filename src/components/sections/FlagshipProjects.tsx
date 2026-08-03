@@ -1,21 +1,20 @@
 import { FLAGSHIP_PROJECTS } from '@/content/projects';
 import { ProjectCard } from '../ProjectCard';
-import { Reveal } from '../Reveal';
+import { Section } from '../Section';
 
 export function FlagshipProjects() {
   return (
-    <section id="projects" className="mx-auto max-w-5xl px-6 py-24 md:py-32">
-      <Reveal>
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-2">Flagship Projects</h2>
-        <p className="text-muted mb-12">Real client work, hackathon wins, and ongoing builds.</p>
-      </Reveal>
-      <div className="grid gap-8 md:gap-12">
+    <Section
+      id="projects"
+      kicker="Flagship Projects"
+      title="Real client work, hackathon wins, and ongoing builds"
+      intro="Every project below has real users, a real deadline, or both. Click any card for the case study."
+    >
+      <div className="grid gap-6 md:gap-8 md:grid-cols-2">
         {FLAGSHIP_PROJECTS.map((p) => (
-          <Reveal key={p.slug}>
-            <ProjectCard project={p} variant="flagship" />
-          </Reveal>
+          <ProjectCard key={p.slug} project={p} variant="flagship" />
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

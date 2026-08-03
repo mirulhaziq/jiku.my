@@ -1,18 +1,21 @@
 import { PROFILE } from '@/content/profile';
-import { Reveal } from '../Reveal';
+import { Section } from '../Section';
 
 export function LinkedInActivity() {
   return (
-    <section className="mx-auto max-w-5xl px-6 py-24 md:py-32">
-      <Reveal>
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">LinkedIn Activity</h2>
-        <p className="text-muted">
-          Recent posts sync coming soon.{' '}
-          <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="text-accent hover:underline">
-            Follow on LinkedIn →
-          </a>
-        </p>
-      </Reveal>
-    </section>
+    <Section
+      kicker="LinkedIn"
+      title="Recent activity"
+      intro="Post sync arrives in a later iteration. In the meantime:"
+    >
+      <a
+        href={PROFILE.linkedin}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium hover:bg-card transition"
+      >
+        Follow on LinkedIn <span aria-hidden="true">→</span>
+      </a>
+    </Section>
   );
 }

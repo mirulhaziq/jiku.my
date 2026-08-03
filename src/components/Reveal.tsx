@@ -15,7 +15,7 @@ export function Reveal({
   as?: 'div' | 'li';
 }) {
   const ref = useRef<HTMLDivElement | HTMLLIElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [state, setState] = useState<'initial' | 'ready' | 'visible'>('initial');
 
   useEffect(() => {
     const el = ref.current;
@@ -26,8 +26,10 @@ export function Reveal({
       return rect.top < window.innerHeight - 40 && rect.bottom > 0;
     };
 
+    setState('ready');
+
     if (inViewport()) {
-      setVisible(true);
+      requestAnimationFrame(() => setState('visible'));
       return;
     }
 
@@ -35,19 +37,19 @@ export function Reveal({
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setVisible(true);
+            setState('visible');
             observer.disconnect();
             window.removeEventListener('scroll', onScroll);
           }
         }
       },
-      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' },
     );
     observer.observe(el);
 
     const onScroll = () => {
       if (inViewport()) {
-        setVisible(true);
+        setState('visible');
         observer.disconnect();
         window.removeEventListener('scroll', onScroll);
       }
@@ -64,11 +66,11 @@ export function Reveal({
     as,
     {
       ref,
-      'data-reveal': true,
-      'data-visible': visible ? 'true' : undefined,
+      'data-reveal': state === 'initial' ? undefined : 'ready',
+      'data-visible': state === 'visible' ? 'true' : undefined,
       style: delay ? { transitionDelay: `${delay}ms` } : undefined,
       className: cn(className),
     },
-    children
+    children,
   );
 }

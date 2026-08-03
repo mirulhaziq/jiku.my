@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import type { Project } from '@/content/projects';
-import { DeviceMockup } from './DeviceMockup';
 import { Badge } from './Badge';
 
 export function ProjectCard({
@@ -14,32 +13,40 @@ export function ProjectCard({
     return (
       <Link
         href={`/projects/${project.slug}`}
-        className="group block rounded-card border border-border bg-card p-6 md:p-8 transition hover:-translate-y-0.5 hover:shadow-xl"
+        className="group flex flex-col rounded-card border border-border bg-card p-6 md:p-7 transition hover:-translate-y-0.5 hover:shadow-xl h-full"
       >
-        <div className="mb-6">
-          <DeviceMockup variant={project.mockup} />
+        <h3 className="text-xl md:text-2xl font-semibold tracking-tight mb-2 text-fg group-hover:text-accent transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-muted mb-4 leading-relaxed">{project.oneLiner}</p>
+        <div className="rounded-lg border border-accent/20 bg-accent/5 p-3 mb-4">
+          <p className="text-xs uppercase tracking-widest text-accent font-medium mb-1">Impact</p>
+          <p className="text-sm text-fg leading-relaxed">{project.impact}</p>
         </div>
-        <div className="pt-6">
-          <h3 className="text-2xl font-semibold tracking-tight mb-2">{project.title}</h3>
-          <p className="text-muted mb-3">{project.oneLiner}</p>
-          <p className="text-sm mb-4"><span className="text-accent font-medium">Impact:</span> {project.impact}</p>
-          <p className="text-xs text-muted mb-4"><span className="uppercase tracking-wider">Role · </span>{project.role}</p>
-          <div className="flex flex-wrap gap-2">
-            {project.techStack.map((t) => (
-              <Badge key={t}>{t}</Badge>
-            ))}
-          </div>
+        <p className="text-xs text-muted mb-5">
+          <span className="uppercase tracking-widest">Role · </span>
+          {project.role}
+        </p>
+        <div className="mt-auto flex flex-wrap gap-1.5">
+          {project.techStack.map((t) => (
+            <Badge key={t}>{t}</Badge>
+          ))}
         </div>
+        <span className="mt-4 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+          Read case study →
+        </span>
       </Link>
     );
   }
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="block rounded-card border border-border bg-card p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
+      className="group block rounded-card border border-border bg-card p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
     >
-      <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
-      <p className="text-sm text-muted mb-3">{project.oneLiner}</p>
+      <h3 className="text-lg font-semibold mb-1 text-fg group-hover:text-accent transition-colors">
+        {project.title}
+      </h3>
+      <p className="text-sm text-muted mb-3 leading-relaxed">{project.oneLiner}</p>
       <div className="flex flex-wrap gap-1.5">
         {project.techStack.slice(0, 4).map((t) => (
           <Badge key={t}>{t}</Badge>
