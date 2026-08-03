@@ -35,12 +35,15 @@ export function Reveal({
     return () => observer.disconnect();
   }, []);
 
-  return createElement(as, {
-    ref,
-    'data-reveal': true,
-    'data-visible': visible ? 'true' : undefined,
-    style: delay ? { transitionDelay: `${delay}ms` } : undefined,
-    className: cn(className),
-    children,
-  });
+  return createElement(
+    as,
+    {
+      ref,
+      'data-reveal': true,
+      'data-visible': visible ? 'true' : undefined,
+      style: delay ? { transitionDelay: `${delay}ms` } : undefined,
+      className: cn(className),
+    },
+    children
+  );
 }
