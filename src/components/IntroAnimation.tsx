@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DotLottieReact, type DotLottie } from '@lottiefiles/dotlottie-react';
 
 const SESSION_KEY = 'intro-played';
@@ -11,6 +11,7 @@ type Phase = 'idle' | 'playing' | 'fading' | 'done';
 
 export function IntroAnimation({ children }: { children: React.ReactNode }) {
   const [phase, setPhase] = useState<Phase>('idle');
+  const fallbackTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -25,12 +26,22 @@ export function IntroAnimation({ children }: { children: React.ReactNode }) {
     setPhase('playing');
     document.body.style.overflow = 'hidden';
 
-    const fallback = window.setTimeout(startFade, FALLBACK_TIMEOUT_MS);
-    return () => window.clearTimeout(fallback);
+    fallbackTimeoutRef.current = window.setTimeout(startFade, FALLBACK_TIMEOUT_MS);
+    return () => {
+      if (fallbackTimeoutRef.current !== null) {
+        window.clearTimeout(fallbackTimeoutRef.current);
+        fallbackTimeoutRef.current = null;
+      }
+      document.body.style.overflow = '';
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function startFade() {
+    if (fallbackTimeoutRef.current !== null) {
+      window.clearTimeout(fallbackTimeoutRef.current);
+      fallbackTimeoutRef.current = null;
+    }
     window.sessionStorage.setItem(SESSION_KEY, '1');
     setPhase('fading');
     window.setTimeout(() => {
