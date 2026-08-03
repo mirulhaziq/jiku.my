@@ -61,7 +61,7 @@ export function IntroAnimation({ children }: { children: React.ReactNode }) {
           style={{
             position: 'fixed',
             inset: 0,
-            background: '#000',
+            background: '#fafafa',
             zIndex: 100,
             display: 'grid',
             placeItems: 'center',
