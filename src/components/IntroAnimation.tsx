@@ -1,0 +1,79 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { DotLottieReact, type DotLottie } from '@lottiefiles/dotlottie-react';
+
+const SESSION_KEY = 'intro-played';
+const FADE_MS = 500;
+const FALLBACK_TIMEOUT_MS = 3000;
+
+type Phase = 'idle' | 'playing' | 'fading' | 'done';
+
+export function IntroAnimation({ children }: { children: React.ReactNode }) {
+  const [phase, setPhase] = useState<Phase>('idle');
+
+  useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const alreadyPlayed = window.sessionStorage.getItem(SESSION_KEY);
+
+    if (alreadyPlayed || reduced) {
+      if (reduced) window.sessionStorage.setItem(SESSION_KEY, '1');
+      setPhase('done');
+      return;
+    }
+
+    setPhase('playing');
+    document.body.style.overflow = 'hidden';
+
+    const fallback = window.setTimeout(startFade, FALLBACK_TIMEOUT_MS);
+    return () => window.clearTimeout(fallback);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function startFade() {
+    window.sessionStorage.setItem(SESSION_KEY, '1');
+    setPhase('fading');
+    window.setTimeout(() => {
+      document.body.style.overflow = '';
+      setPhase('done');
+    }, FADE_MS);
+  }
+
+  const overlayVisible = phase === 'playing' || phase === 'fading';
+
+  return (
+    <>
+      {overlayVisible && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: '#000',
+            zIndex: 100,
+            display: 'grid',
+            placeItems: 'center',
+            opacity: phase === 'fading' ? 0 : 1,
+            transition: `opacity ${FADE_MS}ms ease-out`,
+            pointerEvents: phase === 'fading' ? 'none' : 'auto',
+          }}
+        >
+          {phase === 'playing' && (
+            <div style={{ width: 'min(70vw, 520px)', aspectRatio: '1 / 1' }}>
+              <DotLottieReact
+                src="/hello-apple.lottie"
+                autoplay
+                loop={false}
+                dotLottieRefCallback={(dotLottie: DotLottie | null) => {
+                  dotLottie?.addEventListener('complete', startFade);
+                }}
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+          )}
+        </div>
+      )}
+      {children}
+    </>
+  );
+}
