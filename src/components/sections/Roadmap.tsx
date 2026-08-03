@@ -10,14 +10,12 @@ export function Roadmap() {
       </Reveal>
       <ul className="space-y-4">
         {ROADMAP.map((item) => (
-          <Reveal key={item.title}>
-            <li className="flex items-start justify-between gap-4 rounded-card border border-border bg-card p-5">
-              <div>
-                <p className="font-medium">{item.title}</p>
-                {item.note && <p className="text-sm text-muted mt-1">{item.note}</p>}
-              </div>
-              <Badge tone={item.status}>{item.status.replace('_', ' ')}</Badge>
-            </li>
+          <Reveal as="li" key={item.title} className="flex items-start justify-between gap-4 rounded-card border border-border bg-card p-5">
+            <div>
+              <p className="font-medium">{item.title}</p>
+              {item.note && <p className="text-sm text-muted mt-1">{item.note}</p>}
+            </div>
+            <Badge tone={item.status}>{item.status.replace('_', ' ')}</Badge>
           </Reveal>
         ))}
       </ul>

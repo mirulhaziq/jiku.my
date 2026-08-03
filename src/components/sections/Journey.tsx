@@ -12,13 +12,11 @@ export function Journey() {
       </Reveal>
       <ol className="relative border-l border-border pl-6 space-y-8">
         {TIMELINE.slice().reverse().map((entry) => (
-          <Reveal key={`${entry.dateISO}-${entry.title}`}>
-            <li>
-              <div className="absolute -left-1.5 w-3 h-3 rounded-full bg-accent" />
-              <p className="text-xs uppercase tracking-wider text-muted">{entry.date}</p>
-              <p className="mt-1 font-medium">{entry.title}</p>
-              <p className="text-sm text-muted">{entry.org}</p>
-            </li>
+          <Reveal as="li" key={`${entry.dateISO}-${entry.title}`}>
+            <div className="absolute -left-1.5 w-3 h-3 rounded-full bg-accent" />
+            <p className="text-xs uppercase tracking-wider text-muted">{entry.date}</p>
+            <p className="mt-1 font-medium">{entry.title}</p>
+            <p className="text-sm text-muted">{entry.org}</p>
           </Reveal>
         ))}
       </ol>

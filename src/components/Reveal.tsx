@@ -1,18 +1,20 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, createElement } from 'react';
 import { cn } from '@/lib/cn';
 
 export function Reveal({
   children,
   delay,
   className,
+  as = 'div',
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
+  as?: 'div' | 'li';
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement | HTMLLIElement>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -33,15 +35,12 @@ export function Reveal({
     return () => observer.disconnect();
   }, []);
 
-  return (
-    <div
-      ref={ref}
-      data-reveal
-      data-visible={visible ? 'true' : undefined}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-      className={cn(className)}
-    >
-      {children}
-    </div>
-  );
+  return createElement(as, {
+    ref,
+    'data-reveal': true,
+    'data-visible': visible ? 'true' : undefined,
+    style: delay ? { transitionDelay: `${delay}ms` } : undefined,
+    className: cn(className),
+    children,
+  });
 }

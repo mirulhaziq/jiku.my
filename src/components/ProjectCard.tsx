@@ -38,7 +38,7 @@ export function ProjectCard({
       href={`/projects/${project.slug}`}
       className="block rounded-card border border-border bg-card p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
     >
-      <h4 className="text-lg font-semibold mb-1">{project.title}</h4>
+      <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
       <p className="text-sm text-muted mb-3">{project.oneLiner}</p>
       <div className="flex flex-wrap gap-1.5">
         {project.techStack.slice(0, 4).map((t) => (
