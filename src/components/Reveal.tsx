@@ -20,19 +20,44 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    const inViewport = () => {
+      const rect = el.getBoundingClientRect();
+      return rect.top < window.innerHeight - 40 && rect.bottom > 0;
+    };
+
+    if (inViewport()) {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             setVisible(true);
             observer.disconnect();
+            window.removeEventListener('scroll', onScroll);
           }
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+
+    const onScroll = () => {
+      if (inViewport()) {
+        setVisible(true);
+        observer.disconnect();
+        window.removeEventListener('scroll', onScroll);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return createElement(
