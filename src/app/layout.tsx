@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import { IntroAnimation } from '@/components/IntroAnimation';
 import { Nav } from '@/components/Nav';
 import { SmoothScroll } from '@/components/SmoothScroll';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'jiku.my. Amirul Haziq',
@@ -30,14 +31,14 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <IntroAnimation>
-          <SmoothScroll>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <IntroAnimation>
             <Nav />
-            {children}
-          </SmoothScroll>
-        </IntroAnimation>
+            <SmoothScroll>{children}</SmoothScroll>
+          </IntroAnimation>
+        </ThemeProvider>
       </body>
     </html>
   );

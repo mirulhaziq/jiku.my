@@ -11,15 +11,13 @@
   --border: rgba(10, 10, 10, 0.08);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0a0a0a;
-    --fg: #ededed;
-    --muted: #9ca3af;
-    --accent: #0a84ff;
-    --card: #141414;
-    --border: rgba(255, 255, 255, 0.08);
-  }
+:root.dark {
+  --bg: #0a0a0a;
+  --fg: #ededed;
+  --muted: #9ca3af;
+  --accent: #0a84ff;
+  --card: #141414;
+  --border: rgba(255, 255, 255, 0.08);
 }
 
 html {

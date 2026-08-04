@@ -41,7 +41,7 @@ export function Contact() {
           Resume PDF
         </a>
       </div>
-      <p className="text-xs text-muted mt-16">
+      <p className="text-xs text-muted mt-16 pb-24 md:pb-0">
         © {new Date().getFullYear()} Amirul Haziq. Built with Next.js and deployed on Vercel.
       </p>
     </Section>
