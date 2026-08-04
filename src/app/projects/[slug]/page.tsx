@@ -2,21 +2,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FLAGSHIP_PROJECTS, MORE_PROJECTS } from '@/content/projects';
 import { Badge } from '@/components/Badge';
+import { InDevelopment } from '@/components/InDevelopment';
 
 const ALL = [...FLAGSHIP_PROJECTS, ...MORE_PROJECTS];
 
 export function generateStaticParams() {
   return ALL.map((p) => ({ slug: p.slug }));
 }
-
-const SECTIONS = [
-  'Problem',
-  'Architecture',
-  'Key Decisions & Trade-offs',
-  'Cost Optimization',
-  'Impact',
-  'Lessons Learned',
-];
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = ALL.find((p) => p.slug === params.slug);
@@ -50,14 +42,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </div>
       </header>
 
-      <div className="space-y-12">
-        {SECTIONS.map((heading) => (
-          <section key={heading}>
-            <h2 className="text-xl md:text-2xl font-semibold mb-3 text-fg">{heading}</h2>
-            <p className="text-muted italic">Write-up in progress.</p>
-          </section>
-        ))}
-      </div>
+      <InDevelopment />
     </main>
   );
 }
