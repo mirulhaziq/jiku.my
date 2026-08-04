@@ -5,7 +5,7 @@ import TiltedCard from '../TiltedCard';
 export function Hero() {
   return (
     <section id="hero" className="mx-auto max-w-5xl px-6 pt-20 pb-24 md:pt-32 md:pb-32">
-      <div className="grid gap-12 md:grid-cols-[1fr_320px] md:gap-16 items-center">
+      <div className="grid gap-12 md:grid-cols-[1fr_300px] md:gap-16 items-center">
         <div>
           <Badge tone="accent">{PROFILE.statusBadge}</Badge>
           <h1 className="mt-6 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05]">
@@ -52,10 +52,10 @@ export function Hero() {
             imageSrc="/face.png"
             altText="Amirul Haziq"
             captionText="That's me."
-            containerHeight="320px"
-            containerWidth="320px"
-            imageHeight="320px"
-            imageWidth="320px"
+            containerHeight="375px"
+            containerWidth="300px"
+            imageHeight="375px"
+            imageWidth="300px"
             rotateAmplitude={12}
             scaleOnHover={1.05}
             showMobileWarning={false}
