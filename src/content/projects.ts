@@ -19,8 +19,6 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     techStack: ['Python', 'Machine Learning', 'ICP-MS'],
     role: 'Co-founder and commercialisation lead.',
     mockup: 'laptop',
-    image: '/projects/oncotrace.png',
-    imageAlt: 'Amirul Haziq, co-founder of OncoTrace',
   },
   {
     slug: 'bac',
