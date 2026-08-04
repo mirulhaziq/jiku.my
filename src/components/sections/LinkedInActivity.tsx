@@ -5,8 +5,8 @@ export function LinkedInActivity() {
   return (
     <Section
       kicker="LinkedIn"
-      title="Recent activity"
-      intro="Post sync arrives in a later iteration. In the meantime:"
+      title="Recent posts"
+      intro="I will wire up post sync in a later iteration. For now you can follow along here."
     >
       <a
         href={PROFILE.linkedin}

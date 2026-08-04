@@ -6,8 +6,8 @@ export function Journey() {
     <Section
       id="journey"
       kicker="Journey"
-      title="Where I've been building"
-      intro="AI and fintech tools for underserved Southeast Asian communities. Currently on Industrial Training at RHB Bank Group Digital, working toward the AWS Solutions Architect Associate certification and a longer-arc Solution Architect track."
+      title="What I have been up to"
+      intro="I am a final-year software engineering student at UKM. I am on my industrial training at RHB Bank Group Digital and I am working toward the AWS Solutions Architect Associate certification."
     >
       <ol className="relative border-l border-border pl-6 md:pl-8 space-y-8">
         {TIMELINE.slice().reverse().map((entry) => (

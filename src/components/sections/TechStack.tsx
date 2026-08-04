@@ -6,15 +6,15 @@ import { Section } from '../Section';
 const GROUPS: Array<[string, readonly string[]]> = [
   ['Languages', TECH_STACK.languages],
   ['Frameworks', TECH_STACK.frameworks],
-  ['Tools & Platforms', TECH_STACK.tools],
+  ['Tools and platforms', TECH_STACK.tools],
   ['Soft Skills', TECH_STACK.soft],
 ];
 
 export function TechStack() {
   return (
     <Section
-      kicker="Stack & Recognition"
-      title="Tools, certifications, and awards"
+      kicker="Stack and recognition"
+      title="What I build with"
     >
       <div className="space-y-8">
         {GROUPS.map(([label, items]) => (
@@ -32,7 +32,7 @@ export function TechStack() {
           <div className="flex flex-wrap gap-2">
             {AWARDS.map((a) => (
               <Badge key={a.title} tone="accent">
-                {a.year} — {a.title}
+                {a.year}. {a.title}
               </Badge>
             ))}
           </div>

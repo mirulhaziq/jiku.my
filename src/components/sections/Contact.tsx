@@ -8,7 +8,7 @@ export function Contact() {
       bordered
       kicker="Contact"
       title="Get in touch"
-      intro="Looking for a Software Engineer role focused on AI applications, graduating September 2026. Reach out — I read everything."
+      intro="I graduate in September 2026 and I am looking for a software engineering role focused on AI applications. Reach out on any of these and I will read it."
     >
       <div className="flex flex-wrap gap-3">
         <a
@@ -42,7 +42,7 @@ export function Contact() {
         </a>
       </div>
       <p className="text-xs text-muted mt-16">
-        © {new Date().getFullYear()} Amirul Haziq. Built with Next.js, deployed on Vercel.
+        © {new Date().getFullYear()} Amirul Haziq. Built with Next.js and deployed on Vercel.
       </p>
     </Section>
   );

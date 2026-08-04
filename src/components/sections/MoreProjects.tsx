@@ -5,8 +5,8 @@ import { Section } from '../Section';
 export function MoreProjects() {
   return (
     <Section
-      kicker="More Projects"
-      title="Smaller builds and hackathon prototypes"
+      kicker="More projects"
+      title="Smaller builds and side experiments"
     >
       <div className="grid gap-4 md:grid-cols-2">
         {MORE_PROJECTS.map((p) => (

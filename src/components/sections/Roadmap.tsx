@@ -7,8 +7,8 @@ export function Roadmap() {
     <Section
       id="roadmap"
       kicker="Roadmap"
-      title="What's next"
-      intro="Certifications, career direction, and the long-arc goals I'm working toward."
+      title="What is next for me"
+      intro="Where I want to grow after graduation and the certifications I am walking through to get there."
     >
       <ul className="space-y-3">
         {ROADMAP.map((item) => (

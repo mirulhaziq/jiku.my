@@ -20,7 +20,7 @@ export function InDevelopment() {
         Stay tuned
       </h3>
       <p className="mt-3 text-muted max-w-md leading-relaxed">
-        Full case study — problem, architecture, decisions, and lessons — is being written up. Check back soon.
+        The full case study is being written up. Check back soon.
       </p>
     </div>
   );

@@ -2,7 +2,7 @@ import { Section } from '../Section';
 
 export function GitHubActivity() {
   return (
-    <Section kicker="GitHub" title="Code, commits, and side builds">
+    <Section kicker="GitHub" title="Where the code lives">
       <a
         href="https://github.com/mirulhaziq"
         target="_blank"
@@ -12,7 +12,7 @@ export function GitHubActivity() {
         <div>
           <p className="text-sm text-muted mb-1">github.com/mirulhaziq</p>
           <p className="text-lg md:text-xl font-medium text-fg">
-            Repositories, contributions, and hackathon builds.
+            The repositories behind the projects on this page and my day-to-day commits.
           </p>
         </div>
         <svg

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Project } from '@/content/projects';
 import { Badge } from './Badge';
+import { ProjectImage } from './ProjectImage';
 
 export function ProjectCard({
   project,
@@ -13,8 +14,9 @@ export function ProjectCard({
     return (
       <Link
         href={`/projects/${project.slug}`}
-        className="group flex flex-col rounded-card border border-border bg-card p-6 md:p-7 transition hover:-translate-y-0.5 hover:shadow-xl h-full"
+        className="group flex flex-col rounded-card border border-border bg-card p-5 md:p-6 transition hover:-translate-y-0.5 hover:shadow-xl h-full"
       >
+        <ProjectImage project={project} aspect="16/10" className="mb-5" />
         <h3 className="text-xl md:text-2xl font-semibold tracking-tight mb-2 text-fg group-hover:text-accent transition-colors">
           {project.title}
         </h3>
@@ -24,7 +26,7 @@ export function ProjectCard({
           <p className="text-sm text-fg leading-relaxed">{project.impact}</p>
         </div>
         <p className="text-xs text-muted mb-5">
-          <span className="uppercase tracking-widest">Role · </span>
+          <span className="uppercase tracking-widest">Role. </span>
           {project.role}
         </p>
         <div className="mt-auto flex flex-wrap gap-1.5">
@@ -41,8 +43,9 @@ export function ProjectCard({
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group block rounded-card border border-border bg-card p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
+      className="group flex flex-col rounded-card border border-border bg-card p-4 md:p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
     >
+      <ProjectImage project={project} aspect="16/9" className="mb-4" />
       <h3 className="text-lg font-semibold mb-1 text-fg group-hover:text-accent transition-colors">
         {project.title}
       </h3>
