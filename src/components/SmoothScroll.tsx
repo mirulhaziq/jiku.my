@@ -24,12 +24,28 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     rafId = requestAnimationFrame(raf);
 
     const onAnchorClick = (event: MouseEvent) => {
+      // Ignore modified clicks so cmd/ctrl-click still opens in new tab.
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
       const target = event.target as HTMLElement | null;
-      const anchor = target?.closest('a[href^="#"]') as HTMLAnchorElement | null;
+      const anchor = target?.closest('a[href]') as HTMLAnchorElement | null;
       if (!anchor) return;
+
       const href = anchor.getAttribute('href');
-      if (!href || href === '#') return;
-      const el = document.querySelector(href);
+      if (!href) return;
+
+      // Accept either pure hash ("#journey") or absolute-root hash ("/#journey").
+      // For "/#..." only intercept if we're already on the root path — otherwise
+      // let Next handle the cross-page navigation normally.
+      let hash: string | null = null;
+      if (href.startsWith('#')) {
+        hash = href;
+      } else if (href.startsWith('/#') && window.location.pathname === '/') {
+        hash = href.slice(1);
+      }
+      if (!hash || hash === '#') return;
+
+      const el = document.querySelector(hash);
       if (!el) return;
       event.preventDefault();
       lenis.scrollTo(el as HTMLElement, { offset: -8 });

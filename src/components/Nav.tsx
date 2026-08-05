@@ -3,23 +3,36 @@
 import { useEffect, useState } from 'react';
 import { motion, LayoutGroup } from 'motion/react';
 import { useTheme } from 'next-themes';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/cn';
 
 type NavLink = { href: string; label: string; id: string };
 
 const LINKS: NavLink[] = [
-  { href: '#journey', label: 'Journey', id: 'journey' },
-  { href: '#projects', label: 'Projects', id: 'projects' },
-  { href: '#roadmap', label: 'Roadmap', id: 'roadmap' },
-  { href: '#contact', label: 'Contact', id: 'contact' },
+  { href: '/#journey', label: 'Journey', id: 'journey' },
+  { href: '/#projects', label: 'Projects', id: 'projects' },
+  { href: '/#roadmap', label: 'Roadmap', id: 'roadmap' },
+  { href: '/#contact', label: 'Contact', id: 'contact' },
 ];
 
 const OBSERVED_IDS = ['hero', ...LINKS.map((l) => l.id)];
 
 export function Nav() {
-  const [activeId, setActiveId] = useState<string>('hero');
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  // On any /projects/* route, mark Projects as the active nav pill even though
+  // we cannot IntersectionObserve homepage sections from a detail page.
+  const isProjectDetail = pathname.startsWith('/projects/');
+
+  const [activeId, setActiveId] = useState<string>(isProjectDetail ? 'projects' : 'hero');
 
   useEffect(() => {
+    if (!isHome) {
+      // Route-based fallback active state on non-home pages.
+      if (isProjectDetail) setActiveId('projects');
+      return;
+    }
+
     const elements = OBSERVED_IDS.map((id) => document.getElementById(id)).filter(
       (el): el is HTMLElement => el !== null,
     );
@@ -37,7 +50,7 @@ export function Nav() {
 
     for (const el of elements) observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [isHome, isProjectDetail, pathname]);
 
   return (
     <nav
