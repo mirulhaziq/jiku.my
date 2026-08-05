@@ -51,10 +51,10 @@ export function Nav() {
       <LayoutGroup>
         <div
           className={cn(
-            'flex items-center gap-1 rounded-full p-1.5',
-            'bg-white/70 dark:bg-neutral-900/60',
+            'flex items-center gap-1 rounded-full p-2',
+            'bg-white/75 dark:bg-neutral-900/65',
             'backdrop-blur-2xl backdrop-saturate-150',
-            'border border-white/40 dark:border-white/10',
+            'border border-white/50 dark:border-white/10',
             'shadow-[0_8px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]',
           )}
         >
@@ -65,14 +65,17 @@ export function Nav() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'relative rounded-full px-4 py-2 text-sm font-medium transition-colors',
-                  isActive ? 'text-bg' : 'text-muted hover:text-fg',
+                  'relative inline-flex items-center h-9 rounded-full px-4 text-sm font-medium transition-colors',
+                  isActive
+                    ? 'text-white dark:text-neutral-900'
+                    : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100',
                 )}
               >
                 {isActive && (
                   <motion.span
                     layoutId="nav-active-pill"
-                    className="absolute inset-0 rounded-full bg-fg"
+                    initial={false}
+                    className="absolute inset-0 rounded-full bg-neutral-900 dark:bg-neutral-100 shadow-sm"
                     transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                   />
                 )}
@@ -112,8 +115,8 @@ function ThemeToggle() {
       title={label}
       className={cn(
         'grid place-items-center rounded-full ml-1',
-        'w-9 h-9 text-fg',
-        'hover:bg-white/60 dark:hover:bg-white/10 transition-colors',
+        'w-9 h-9 text-neutral-700 dark:text-neutral-200',
+        'hover:bg-black/5 dark:hover:bg-white/10 transition-colors',
       )}
     >
       {iconTheme === 'dark' && <MoonIcon />}
