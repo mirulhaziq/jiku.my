@@ -10,21 +10,18 @@ const KIND_META: Record<WorkKind, {
   label: string;
   tileBg: string;
   tileText: string;
-  tileRing: string;
   glowRgb: string;
 }> = {
   internship: {
     label: 'Internship',
     tileBg: 'bg-blue-500',
     tileText: 'text-white',
-    tileRing: 'ring-1 ring-inset ring-white/20',
     glowRgb: '59, 130, 246',
   },
   client: {
     label: 'Client work',
     tileBg: 'bg-emerald-500',
     tileText: 'text-white',
-    tileRing: 'ring-1 ring-inset ring-white/20',
     glowRgb: '16, 185, 129',
   },
 };
@@ -58,13 +55,12 @@ export function WorkCard({ entry }: { entry: WorkEntry }) {
       />
 
       <div className="relative z-10 flex items-start gap-4 md:gap-6">
-        {/* Left: monogram tile — solid color, clear identity */}
+        {/* Left: monogram tile — plain solid color, no shadow, no ring */}
         <div
           className={cn(
-            'w-14 h-14 md:w-16 md:h-16 rounded-2xl grid place-items-center shrink-0 shadow-sm',
+            'w-14 h-14 md:w-16 md:h-16 rounded-2xl grid place-items-center shrink-0',
             meta.tileBg,
             meta.tileText,
-            meta.tileRing,
           )}
           aria-hidden="true"
         >
