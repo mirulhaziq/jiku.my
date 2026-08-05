@@ -6,8 +6,9 @@ import { SmoothScroll } from '@/components/SmoothScroll';
 import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://jiku.my'),
   title: 'jiku.my. Amirul Haziq',
-  description: 'Software engineering intern at RHB Group Digital. I build AI and fintech products for Southeast Asia.',
+  description: 'Software engineering intern at RHB Group Digital. I build AI and fintech products for Southeast Asia. Open to full-time roles from September 2026.',
   applicationName: 'jiku.my',
   appleWebApp: {
     capable: true,
@@ -16,6 +17,20 @@ export const metadata: Metadata = {
   },
   icons: {
     apple: '/apple-touch-icon.png',
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://jiku.my',
+    title: 'Amirul Haziq · jiku.my',
+    description: 'Software engineering intern at RHB Group Digital. I build AI and fintech products for Southeast Asia. Open to full-time roles from September 2026.',
+    siteName: 'jiku.my',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Amirul Haziq — jiku.my' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Amirul Haziq · jiku.my',
+    description: 'Software engineering intern at RHB Group Digital. I build AI and fintech products for Southeast Asia.',
+    images: ['/og.png'],
   },
 };
 

@@ -3,15 +3,19 @@ import { Badge } from '../Badge';
 import { Section } from '../Section';
 
 export function Roadmap() {
+  // Certifications now live in Stack & Recognition as Credentials cards.
+  // Roadmap shows the career-arc goals only.
+  const items = ROADMAP.filter((r) => r.category !== 'cert');
+
   return (
     <Section
       id="roadmap"
       kicker="Roadmap"
       title="What is next for me"
-      intro="Where I want to grow after graduation and the certifications I am walking through to get there."
+      intro="The direction I want to grow after graduation."
     >
       <ul className="space-y-3">
-        {ROADMAP.map((item) => (
+        {items.map((item) => (
           <li
             key={item.title}
             className="flex items-start justify-between gap-4 rounded-card border border-border bg-card p-5"

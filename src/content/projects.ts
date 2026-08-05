@@ -9,6 +9,10 @@ export type Project = {
   title: string;
   oneLiner: string;
   impact: string;
+  // Optional split of `impact` for display-type rendering on flagship cards.
+  // Headline shows at ~text-3xl/4xl, context follows below in muted body copy.
+  impactHeadline?: string;
+  impactContext?: string;
   techStack: string[];
   role: string;
   mockup: 'both' | 'laptop' | 'phone';
@@ -24,6 +28,8 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     title: 'OncoTrace',
     oneLiner: 'An AI system that spots early cancer signals from blood biomarkers.',
     impact: 'Reached 86.3% F1 across 238 patients. Two patents filed.',
+    impactHeadline: '86.3% F1',
+    impactContext: 'Across 238 patients. Two patents filed.',
     techStack: ['Python', 'Machine Learning', 'ICP-MS'],
     role: 'Lead Commercialiser on the InnoX UKM programme.',
     mockup: 'laptop',
@@ -35,6 +41,8 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     title: 'BAC (Business Analyst Co-Pilot)',
     oneLiner: 'A multi-agent compliance assistant that drafts business requirements documents.',
     impact: 'Second place at Agents@RHB Hackathon 2026. Cut a mid-sized project workflow from around 53 days to around 30.',
+    impactHeadline: '23 days saved',
+    impactContext: 'On a mid-sized project workflow. Second place at Agents@RHB Hackathon 2026.',
     techStack: ['Microsoft Copilot Studio', 'Claude', 'BNM regulations knowledge base'],
     role: 'Co-built with Azim Rudy.',
     mockup: 'laptop',
@@ -46,6 +54,8 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     title: 'RHB GO',
     oneLiner: 'A student fintech web app with a verified GPS merchant map, a discount portal, and an AI chatbot.',
     impact: 'Second place at RHB MySiswa Brand Challenge 2026. Shaped by a primary survey of 160 students.',
+    impactHeadline: '2nd place',
+    impactContext: 'RHB MySiswa Brand Challenge 2026. Shaped by a survey of 160 students.',
     techStack: ['Next.js 14', 'TypeScript', 'Supabase', 'PostGIS', 'Mapbox GL JS', 'Claude API'],
     role: 'I owned all the tech and development. Azim handled the RHB and merchant data. Qiqi handled marketing.',
     mockup: 'both',
@@ -57,6 +67,8 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     title: 'C.A.R.I.',
     oneLiner: 'An agentic AI career co-pilot that diagnoses CVs against job descriptions and auto-tailors resumes.',
     impact: 'Built in 40 hours at seKODlah TecHive Hackathon 2026 with Team 3A+.',
+    impactHeadline: '40 hours',
+    impactContext: 'End-to-end build at seKODlah TecHive Hackathon 2026 with Team 3A+.',
     techStack: ['Express.js', 'TypeScript', 'Supabase', 'Claude', 'OpenAI'],
     role: 'I built the backend. Every AI action goes through a human approval gate.',
     mockup: 'laptop',
@@ -68,6 +80,8 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     title: 'Guidr',
     oneLiner: 'A scam investigation PWA built for the Databricks hackathon track.',
     impact: 'Hackathon build in 2026.',
+    impactHeadline: 'Databricks track',
+    impactContext: 'Hackathon build, 2026.',
     techStack: ['Next.js', 'Firebase', 'Vertex AI Gemini'],
     role: 'Team build.',
     mockup: 'phone',
