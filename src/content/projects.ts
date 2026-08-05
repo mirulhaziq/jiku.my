@@ -1,3 +1,9 @@
+export type ProjectCategory =
+  | 'client'      // real client work delivered to an org
+  | 'programme'   // ongoing programme / commercialisation venture
+  | 'hackathon'   // hackathon build
+  | 'fyp';        // final year project
+
 export type Project = {
   slug: string;
   title: string;
@@ -6,6 +12,8 @@ export type Project = {
   techStack: string[];
   role: string;
   mockup: 'both' | 'laptop' | 'phone';
+  category: ProjectCategory;
+  categoryLabel: string;   // display text for the category chip, e.g. "Hackathon · 2nd place"
   image?: string;
   imageAlt?: string;
 };
@@ -17,8 +25,10 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     oneLiner: 'An AI system that spots early cancer signals from blood biomarkers.',
     impact: 'Reached 86.3% F1 across 238 patients. Two patents filed.',
     techStack: ['Python', 'Machine Learning', 'ICP-MS'],
-    role: 'Co-founder and commercialisation lead.',
+    role: 'Lead Commercialiser on the InnoX UKM programme.',
     mockup: 'laptop',
+    category: 'programme',
+    categoryLabel: 'InnoX UKM programme',
   },
   {
     slug: 'bac',
@@ -28,6 +38,8 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     techStack: ['Microsoft Copilot Studio', 'Claude', 'BNM regulations knowledge base'],
     role: 'Co-built with Azim Rudy.',
     mockup: 'laptop',
+    category: 'hackathon',
+    categoryLabel: 'Hackathon · 2nd place',
   },
   {
     slug: 'rhb-go',
@@ -37,6 +49,8 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     techStack: ['Next.js 14', 'TypeScript', 'Supabase', 'PostGIS', 'Mapbox GL JS', 'Claude API'],
     role: 'I owned all the tech and development. Azim handled the RHB and merchant data. Qiqi handled marketing.',
     mockup: 'both',
+    category: 'hackathon',
+    categoryLabel: 'Hackathon · 2nd place',
   },
   {
     slug: 'cari',
@@ -46,6 +60,8 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     techStack: ['Express.js', 'TypeScript', 'Supabase', 'Claude', 'OpenAI'],
     role: 'I built the backend. Every AI action goes through a human approval gate.',
     mockup: 'laptop',
+    category: 'hackathon',
+    categoryLabel: 'Hackathon',
   },
   {
     slug: 'guidr',
@@ -55,6 +71,8 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     techStack: ['Next.js', 'Firebase', 'Vertex AI Gemini'],
     role: 'Team build.',
     mockup: 'phone',
+    category: 'hackathon',
+    categoryLabel: 'Hackathon',
   },
 ];
 
@@ -65,17 +83,21 @@ export const MORE_PROJECTS: Project[] = [
     oneLiner: 'A booking system for iPads and shared learning rooms with row-level security and a database-level guard against double-booking.',
     impact: 'Delivered a working MVP to the faculty and demoed it to stakeholders.',
     techStack: ['Supabase', 'PostgreSQL', 'Magic-link auth'],
-    role: 'Web Developer at UKM FST.',
+    role: 'Web Developer for the Faculty of Science and Technology at UKM.',
     mockup: 'laptop',
+    category: 'client',
+    categoryLabel: 'Client · Faculty of Science and Technology',
   },
   {
     slug: 'kiz-mobile',
     title: 'Kolej Ibu Zain Mobile App',
     oneLiner: 'A student registration app with an AR map and a Google Maps location for finding the college.',
-    impact: 'In use for onboarding at KIZ.',
+    impact: 'In use for onboarding at Kolej Ibu Zain.',
     techStack: ['Mobile', 'Augmented Reality', 'Maps'],
-    role: 'Mobile Developer at UKM Kolej Ibu Zain.',
+    role: 'Mobile Developer for Kolej Ibu Zain at UKM.',
     mockup: 'phone',
+    category: 'client',
+    categoryLabel: 'Client · Kolej Ibu Zain',
   },
   {
     slug: 'cakapnbayar',
@@ -85,6 +107,8 @@ export const MORE_PROJECTS: Project[] = [
     techStack: ['Whisper ASR', 'Groq inference'],
     role: 'Hackathon build.',
     mockup: 'phone',
+    category: 'hackathon',
+    categoryLabel: 'Hackathon',
   },
   {
     slug: 'fyp-b40-finance',
@@ -94,6 +118,8 @@ export const MORE_PROJECTS: Project[] = [
     techStack: ['React', 'Large Language Models', 'PostgreSQL'],
     role: 'Sole developer. Timeline runs September 2025 to February 2026.',
     mockup: 'laptop',
+    category: 'fyp',
+    categoryLabel: 'Final year project',
   },
   {
     slug: 'deriv-trading-coach',
@@ -103,5 +129,7 @@ export const MORE_PROJECTS: Project[] = [
     techStack: ['Chrome Extension', 'Large Language Models'],
     role: 'Hackathon build.',
     mockup: 'laptop',
+    category: 'hackathon',
+    categoryLabel: 'Hackathon',
   },
 ];
