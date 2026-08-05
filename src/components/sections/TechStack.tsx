@@ -1,19 +1,45 @@
 import { TECH_STACK } from '@/content/techstack';
 import { AWARDS } from '@/content/awards';
-import { Badge } from '../Badge';
 import { Section } from '../Section';
-
-type ToolboxGroup = {
-  label: string;
-  items: readonly string[];
-  icon: React.ReactNode;
-};
+import { ToolboxCard, type ToolboxGroup } from '../ToolboxCard';
 
 const GROUPS: ToolboxGroup[] = [
-  { label: 'Languages', items: TECH_STACK.languages, icon: <BracesIcon /> },
-  { label: 'Frameworks', items: TECH_STACK.frameworks, icon: <FrameworkIcon /> },
-  { label: 'Tools and platforms', items: TECH_STACK.tools, icon: <WrenchIcon /> },
-  { label: 'Soft skills', items: TECH_STACK.soft, icon: <HandshakeIcon /> },
+  {
+    label: 'Languages',
+    items: TECH_STACK.languages,
+    icon: <BracesIcon />,
+    tileTint: 'bg-violet-500/15 text-violet-600 dark:text-violet-400',
+    pillTint: 'bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-500/20',
+    glowRgb: '139, 92, 246',
+    featured: 'Python',
+  },
+  {
+    label: 'Frameworks',
+    items: TECH_STACK.frameworks,
+    icon: <FrameworkIcon />,
+    tileTint: 'bg-blue-500/15 text-blue-600 dark:text-blue-400',
+    pillTint: 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20',
+    glowRgb: '59, 130, 246',
+    featured: 'Next.js',
+  },
+  {
+    label: 'Tools and platforms',
+    items: TECH_STACK.tools,
+    icon: <WrenchIcon />,
+    tileTint: 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400',
+    pillTint: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/20',
+    glowRgb: '16, 185, 129',
+    featured: 'Supabase',
+  },
+  {
+    label: 'Soft skills',
+    items: TECH_STACK.soft,
+    icon: <HandshakeIcon />,
+    tileTint: 'bg-amber-500/15 text-amber-600 dark:text-amber-400',
+    pillTint: 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20',
+    glowRgb: '245, 158, 11',
+    featured: 'Leadership',
+  },
 ];
 
 type Credential = {
@@ -82,25 +108,9 @@ export function TechStack() {
       {/* Toolbox */}
       <div className="mb-16">
         <p className="text-xs uppercase tracking-widest text-muted mb-4">Toolbox</p>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2">
           {GROUPS.map((g) => (
-            <div
-              key={g.label}
-              className="rounded-card border border-border bg-card p-5"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span className="w-9 h-9 rounded-lg bg-neutral-100 dark:bg-neutral-800 grid place-items-center text-fg">
-                  {g.icon}
-                </span>
-                <span className="text-xs uppercase tracking-widest text-muted">{g.items.length}</span>
-              </div>
-              <p className="font-medium text-fg mb-3">{g.label}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {g.items.map((item) => (
-                  <Badge key={item}>{item}</Badge>
-                ))}
-              </div>
-            </div>
+            <ToolboxCard key={g.label} group={g} />
           ))}
         </div>
       </div>

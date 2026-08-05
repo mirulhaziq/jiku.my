@@ -3,12 +3,12 @@ import { Section } from '../Section';
 import { cn } from '@/lib/cn';
 
 const KIND_META: Record<TimelineKind, { label: string; tint: string; icon: React.ReactNode }> = {
-  edu:        { label: 'Education',   tint: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',   icon: <CapIcon /> },
-  award:      { label: 'Award',       tint: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',      icon: <TrophyIcon /> },
-  internship: { label: 'Internship',  tint: 'bg-accent/10 text-accent',                                icon: <BriefcaseIcon /> },
-  client:     { label: 'Client work', tint: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400', icon: <HandshakeIcon /> },
-  venture:    { label: 'Venture',     tint: 'bg-pink-500/10 text-pink-600 dark:text-pink-400',         icon: <RocketIcon /> },
-  programme:  { label: 'Programme',   tint: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400',         icon: <BookIcon /> },
+  edu:        { label: 'Education',   tint: 'bg-violet-500/15 text-violet-600 dark:text-violet-400',   icon: <CapIcon /> },
+  award:      { label: 'Award',       tint: 'bg-amber-500/15 text-amber-600 dark:text-amber-400',      icon: <TrophyIcon /> },
+  internship: { label: 'Internship',  tint: 'bg-blue-500/15 text-blue-600 dark:text-blue-400',         icon: <BriefcaseIcon /> },
+  client:     { label: 'Client work', tint: 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400', icon: <HandshakeIcon /> },
+  venture:    { label: 'Venture',     tint: 'bg-pink-500/15 text-pink-600 dark:text-pink-400',         icon: <RocketIcon /> },
+  programme:  { label: 'Programme',   tint: 'bg-cyan-500/15 text-cyan-600 dark:text-cyan-400',         icon: <BookIcon /> },
 };
 
 function groupByYear(entries: TimelineEntry[]): { year: string; entries: TimelineEntry[] }[] {
@@ -105,12 +105,14 @@ function BriefcaseIcon() {
 }
 
 function HandshakeIcon() {
+  // Lucide "handshake" — actually reads as a handshake.
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-      <path d="M11 17l2 2a1 1 0 1 0 1.5-1.5" />
-      <path d="M13 15l2.5 2.5a1 1 0 1 0 1.5-1.5L14 13" />
-      <path d="M16 10l2 2a1 1 0 1 0 1.5-1.5L15 6H12a5 5 0 0 0-3 1.5L6 10a1 1 0 0 0 1.5 1.5L10 9" />
-      <path d="M18 14l-2-2M4 12l4-4" />
+      <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+      <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+      <path d="m21 3 1 11h-2" />
+      <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+      <path d="M3 4h8" />
     </svg>
   );
 }
