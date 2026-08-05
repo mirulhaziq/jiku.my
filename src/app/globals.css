@@ -39,6 +39,16 @@ body {
   }
 }
 
+/* Pre-hydration guard: an inline script in <body> adds `intro-skip` to <html>
+   for repeat visitors (sessionStorage flag set) or reduced-motion users. This
+   CSS then hides the overlay before it can paint, avoiding a black flash for
+   people who have already seen the intro this session. Fresh visitors don't
+   get the class, so the SSR-rendered overlay stays visible until Lottie fades
+   it out. */
+html.intro-skip [data-intro-overlay] {
+  display: none !important;
+}
+
 /* Reveal animation: content is visible by default. When JS marks it ready+visible,
    it plays a subtle enter animation. If JS never runs (or fails), content still shows. */
 [data-reveal="ready"] {

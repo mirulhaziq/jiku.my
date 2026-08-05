@@ -4,25 +4,28 @@ import { useEffect, useRef, useState } from 'react';
 import { DotLottieReact, setWasmUrl, type DotLottie } from '@lottiefiles/dotlottie-react';
 
 // Serve the renderer WASM from our own /public so the animation doesn't
-// depend on a third-party CDN. Without this the Lottie renders as a
-// black square until the CDN responds (or forever if it's blocked).
+// depend on a third-party CDN.
 setWasmUrl('/dotlottie-player.wasm');
 
 const SESSION_KEY = 'intro-played';
 const FADE_MS = 500;
 const FALLBACK_TIMEOUT_MS = 5000;
 
-type Phase = 'idle' | 'playing' | 'fading' | 'done';
+// 'pending' is the SSR + first-paint state: overlay is in the initial HTML,
+// covering the portfolio, before any JavaScript runs. This is what makes the
+// Lottie feel like a real loading page — the user never sees the portfolio
+// flash first. The inline `<script>` in layout.tsx CSS-hides the overlay
+// immediately for repeat visitors so THEY don't get a black flash either.
+type Phase = 'pending' | 'playing' | 'fading' | 'done';
 
 export function IntroAnimation({ children }: { children: React.ReactNode }) {
-  const [phase, setPhase] = useState<Phase>('idle');
+  const [phase, setPhase] = useState<Phase>('pending');
   const fallbackTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const alreadyPlayed = window.sessionStorage.getItem(SESSION_KEY);
 
-    // If already played this session OR user prefers reduced motion, skip.
     if (alreadyPlayed || reduced) {
       if (reduced) window.sessionStorage.setItem(SESSION_KEY, '1');
       setPhase('done');
@@ -56,12 +59,13 @@ export function IntroAnimation({ children }: { children: React.ReactNode }) {
     }, FADE_MS);
   }
 
-  const overlayVisible = phase === 'playing' || phase === 'fading';
+  const overlayVisible = phase === 'pending' || phase === 'playing' || phase === 'fading';
 
   return (
     <>
       {overlayVisible && (
         <div
+          data-intro-overlay
           aria-hidden="true"
           onClick={phase === 'playing' ? startFade : undefined}
           style={{

@@ -44,9 +44,20 @@ export const viewport: Viewport = {
   ],
 };
 
+// Runs during initial HTML parse, before React hydration and before the
+// intro overlay can paint. If the user has already seen the intro this
+// session (or prefers reduced motion), we add `intro-skip` to <html> so
+// the CSS in globals.css hides the overlay instantly — no flash of black.
+// Fresh visitors don't get the class, so the overlay stays visible and the
+// Lottie plays as normal.
+const INTRO_SKIP_SCRIPT = `try{if(sessionStorage.getItem('intro-played')||matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro-skip')}}catch(e){}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: INTRO_SKIP_SCRIPT }} />
+      </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <IntroAnimation>
