@@ -8,17 +8,23 @@ import { cn } from '@/lib/cn';
 
 const KIND_META: Record<WorkKind, {
   label: string;
-  tileTint: string;
+  tileBg: string;
+  tileText: string;
+  tileRing: string;
   glowRgb: string;
 }> = {
   internship: {
     label: 'Internship',
-    tileTint: 'bg-blue-500/15 text-blue-600 dark:text-blue-400',
+    tileBg: 'bg-blue-500',
+    tileText: 'text-white',
+    tileRing: 'ring-1 ring-inset ring-white/20',
     glowRgb: '59, 130, 246',
   },
   client: {
     label: 'Client work',
-    tileTint: 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400',
+    tileBg: 'bg-emerald-500',
+    tileText: 'text-white',
+    tileRing: 'ring-1 ring-inset ring-white/20',
     glowRgb: '16, 185, 129',
   },
 };
@@ -52,15 +58,19 @@ export function WorkCard({ entry }: { entry: WorkEntry }) {
       />
 
       <div className="relative z-10 flex items-start gap-4 md:gap-6">
-        {/* Left: monogram tile */}
+        {/* Left: monogram tile — solid color, clear identity */}
         <div
           className={cn(
-            'w-14 h-14 md:w-16 md:h-16 rounded-xl grid place-items-center shrink-0 font-semibold tracking-tight',
-            meta.tileTint,
+            'w-14 h-14 md:w-16 md:h-16 rounded-2xl grid place-items-center shrink-0 shadow-sm',
+            meta.tileBg,
+            meta.tileText,
+            meta.tileRing,
           )}
           aria-hidden="true"
         >
-          <span className="text-sm md:text-base">{entry.employerShort}</span>
+          <span className="text-sm md:text-base font-bold tracking-wider">
+            {entry.employerShort}
+          </span>
         </div>
 
         {/* Middle: role, employer, date, one-liner, bullets, tech */}
