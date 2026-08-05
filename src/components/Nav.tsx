@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { motion, LayoutGroup } from 'motion/react';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
@@ -74,7 +75,7 @@ export function Nav() {
           {LINKS.map((link) => {
             const isActive = activeId === link.id;
             return (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
@@ -93,7 +94,7 @@ export function Nav() {
                   />
                 )}
                 <span className="relative z-10">{link.label}</span>
-              </a>
+              </Link>
             );
           })}
           <ThemeToggle />

@@ -2,7 +2,8 @@ export type ProjectCategory =
   | 'client'      // real client work delivered to an org
   | 'programme'   // ongoing programme / commercialisation venture
   | 'hackathon'   // hackathon build
-  | 'fyp';        // final year project
+  | 'fyp'         // final year project
+  | 'venture';    // startup / founding-team product
 
 export type Project = {
   slug: string;
@@ -78,15 +79,15 @@ export const FLAGSHIP_PROJECTS: Project[] = [
   {
     slug: 'guidr',
     title: 'Guidr',
-    oneLiner: 'A scam investigation PWA built for the Databricks hackathon track.',
-    impact: 'Hackathon build in 2026.',
-    impactHeadline: 'Databricks track',
-    impactContext: 'Hackathon build, 2026.',
-    techStack: ['Next.js', 'Firebase', 'Vertex AI Gemini'],
-    role: 'Team build.',
+    oneLiner: 'A scam-investigation app in the VERiQ product suite, built to help Malaysians verify suspicious contacts and transactions.',
+    impact: 'Being prepared for the Google Play Store.',
+    impactHeadline: 'Play Store bound',
+    impactContext: 'Founding-stage VERiQ product, in active build.',
+    techStack: ['React Native', 'Next.js', 'Firebase', 'Vertex AI Gemini'],
+    role: 'Mobile Full-Stack Developer on the VERiQ core team.',
     mockup: 'phone',
-    category: 'hackathon',
-    categoryLabel: 'Hackathon',
+    category: 'venture',
+    categoryLabel: 'Venture · VERiQ product',
   },
 ];
 

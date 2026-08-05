@@ -8,6 +8,7 @@ import { DotLottieReact, setWasmUrl, type DotLottie } from '@lottiefiles/dotlott
 // black square until the CDN responds (or forever if it's blocked).
 setWasmUrl('/dotlottie-player.wasm');
 
+const SESSION_KEY = 'intro-played';
 const FADE_MS = 500;
 const FALLBACK_TIMEOUT_MS = 5000;
 
@@ -19,8 +20,11 @@ export function IntroAnimation({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const alreadyPlayed = window.sessionStorage.getItem(SESSION_KEY);
 
-    if (reduced) {
+    // If already played this session OR user prefers reduced motion, skip.
+    if (alreadyPlayed || reduced) {
+      if (reduced) window.sessionStorage.setItem(SESSION_KEY, '1');
       setPhase('done');
       return;
     }
@@ -44,6 +48,7 @@ export function IntroAnimation({ children }: { children: React.ReactNode }) {
       window.clearTimeout(fallbackTimeoutRef.current);
       fallbackTimeoutRef.current = null;
     }
+    window.sessionStorage.setItem(SESSION_KEY, '1');
     setPhase('fading');
     window.setTimeout(() => {
       document.body.style.overflow = '';

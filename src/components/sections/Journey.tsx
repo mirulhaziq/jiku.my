@@ -1,25 +1,17 @@
-import { TIMELINE, type TimelineEntry } from '@/content/timeline';
+import { TIMELINE, type TimelineEntry, type TimelineKind } from '@/content/timeline';
 import { Section } from '../Section';
 import { cn } from '@/lib/cn';
 
-// Kind → colored icon tile + label
-const KIND_META: Record<TimelineEntry['kind'], { label: string; tint: string; icon: React.ReactNode }> = {
-  award:   { label: 'Award',        tint: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',    icon: <TrophyIcon /> },
-  work:    { label: 'Work',         tint: 'bg-accent/10 text-accent',                              icon: <BriefcaseIcon /> },
-  edu:     { label: 'Education',    tint: 'bg-violet-500/10 text-violet-600 dark:text-violet-400', icon: <CapIcon /> },
-  project: { label: 'Programme',    tint: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400', icon: <CodeIcon /> },
+const KIND_META: Record<TimelineKind, { label: string; tint: string; icon: React.ReactNode }> = {
+  edu:        { label: 'Education',   tint: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',   icon: <CapIcon /> },
+  award:      { label: 'Award',       tint: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',      icon: <TrophyIcon /> },
+  internship: { label: 'Internship',  tint: 'bg-accent/10 text-accent',                                icon: <BriefcaseIcon /> },
+  client:     { label: 'Client work', tint: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400', icon: <HandshakeIcon /> },
+  venture:    { label: 'Venture',     tint: 'bg-pink-500/10 text-pink-600 dark:text-pink-400',         icon: <RocketIcon /> },
+  programme:  { label: 'Programme',   tint: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400',         icon: <BookIcon /> },
 };
 
-// Extract the org's first meaningful letter for the monogram tile
-function monogram(org: string): string {
-  // "UKM FTSM" → "U", "RHB Bank, Group Digital" → "R", "Apple" → "A"
-  const cleaned = org.replace(/[,.]/g, '').trim();
-  return cleaned.charAt(0).toUpperCase();
-}
-
-// Group entries by year (from dateISO YYYY-MM-DD prefix)
 function groupByYear(entries: TimelineEntry[]): { year: string; entries: TimelineEntry[] }[] {
-  // Sort newest first
   const sorted = entries.slice().sort((a, b) => b.dateISO.localeCompare(a.dateISO));
   const groups = new Map<string, TimelineEntry[]>();
   for (const entry of sorted) {
@@ -38,7 +30,7 @@ export function Journey() {
       id="journey"
       kicker="Journey"
       title="What I have been up to"
-      intro="I am a final-year software engineering student at UKM. I am on my industrial training at RHB Bank Group Digital and I am working toward the AWS Solutions Architect Associate certification."
+      intro="I am a final-year software engineering student at UKM. Currently on industrial training at RHB Bank Group Digital and building on the founding team at VERiQ. Working toward the AWS Solutions Architect Associate certification."
     >
       <div className="space-y-14">
         {groups.map((group) => (
@@ -67,12 +59,7 @@ export function Journey() {
                       <span className="text-xs uppercase tracking-widest text-muted">{KIND_META[entry.kind].label}</span>
                     </div>
                     <p className="font-medium text-fg leading-snug">{entry.title}</p>
-                    <div className="mt-1.5 flex items-center gap-2">
-                      <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-neutral-100 dark:bg-neutral-800 text-[10px] font-semibold text-fg">
-                        {monogram(entry.org)}
-                      </span>
-                      <span className="text-sm text-muted">{entry.org}</span>
-                    </div>
+                    <p className="mt-1 text-sm text-muted">{entry.org}</p>
                   </div>
                 </li>
               ))}
@@ -85,6 +72,15 @@ export function Journey() {
 }
 
 // --- icons ---
+
+function CapIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+      <path d="M22 10L12 5 2 10l10 5 10-5z" />
+      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+    </svg>
+  );
+}
 
 function TrophyIcon() {
   return (
@@ -108,20 +104,33 @@ function BriefcaseIcon() {
   );
 }
 
-function CapIcon() {
+function HandshakeIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-      <path d="M22 10L12 5 2 10l10 5 10-5z" />
-      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+      <path d="M11 17l2 2a1 1 0 1 0 1.5-1.5" />
+      <path d="M13 15l2.5 2.5a1 1 0 1 0 1.5-1.5L14 13" />
+      <path d="M16 10l2 2a1 1 0 1 0 1.5-1.5L15 6H12a5 5 0 0 0-3 1.5L6 10a1 1 0 0 0 1.5 1.5L10 9" />
+      <path d="M18 14l-2-2M4 12l4-4" />
     </svg>
   );
 }
 
-function CodeIcon() {
+function RocketIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-      <polyline points="16 18 22 12 16 6" />
-      <polyline points="8 6 2 12 8 18" />
+      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+      <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+    </svg>
+  );
+}
+
+function BookIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
     </svg>
   );
 }
