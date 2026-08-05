@@ -8,9 +8,7 @@ export type ToolboxGroup = {
   items: readonly string[];
   icon: React.ReactNode;
   tileTint: string;
-  pillTint: string;
   glowRgb: string;
-  featured?: string;
 };
 
 export function ToolboxCard({ group }: { group: ToolboxGroup }) {
@@ -27,10 +25,6 @@ export function ToolboxCard({ group }: { group: ToolboxGroup }) {
   const glowStyle = {
     background: `radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), rgba(${group.glowRgb}, 0.08), transparent 40%)`,
   } as React.CSSProperties;
-
-  // Featured item pinned first, then the rest.
-  const rest = group.items.filter((i) => i !== group.featured);
-  const ordered = group.featured ? [group.featured, ...rest] : [...group.items];
 
   return (
     <div
@@ -56,22 +50,14 @@ export function ToolboxCard({ group }: { group: ToolboxGroup }) {
         <h4 className="text-lg font-semibold text-fg mb-4">{group.label}</h4>
 
         <div className="flex flex-wrap gap-1.5">
-          {ordered.map((item) => {
-            const isFeatured = item === group.featured;
-            return (
-              <span
-                key={item}
-                className={cn(
-                  'inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium transition-colors',
-                  isFeatured
-                    ? group.pillTint
-                    : 'bg-card text-muted border-border hover:border-fg/20 hover:text-fg',
-                )}
-              >
-                {item}
-              </span>
-            );
-          })}
+          {group.items.map((item) => (
+            <span
+              key={item}
+              className="inline-flex items-center rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted transition-colors hover:border-fg/20 hover:text-fg"
+            >
+              {item}
+            </span>
+          ))}
         </div>
       </div>
     </div>
