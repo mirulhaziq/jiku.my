@@ -10,6 +10,7 @@ type NavLink = { href: string; label: string; id: string };
 
 const LINKS: NavLink[] = [
   { href: '/#journey', label: 'Journey', id: 'journey' },
+  { href: '/#work', label: 'Work', id: 'work' },
   { href: '/#projects', label: 'Projects', id: 'projects' },
   { href: '/#roadmap', label: 'Roadmap', id: 'roadmap' },
   { href: '/#contact', label: 'Contact', id: 'contact' },
@@ -21,17 +22,23 @@ const OBSERVED_IDS = ['hero', ...LINKS.map((l) => l.id)];
 // while still measuring layout synchronously in the browser.
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
+function routeActiveId(pathname: string): string | null {
+  if (pathname.startsWith('/work/')) return 'work';
+  if (pathname.startsWith('/projects/')) return 'projects';
+  return null;
+}
+
 export function Nav() {
   const pathname = usePathname();
   const isHome = pathname === '/';
-  const isProjectDetail = pathname.startsWith('/projects/');
+  const routeActive = routeActiveId(pathname);
 
-  const [activeId, setActiveId] = useState<string>(isProjectDetail ? 'projects' : 'hero');
+  const [activeId, setActiveId] = useState<string>(routeActive ?? 'hero');
 
   // IntersectionObserver on the home page's sections; route-based fallback elsewhere.
   useEffect(() => {
     if (!isHome) {
-      if (isProjectDetail) setActiveId('projects');
+      if (routeActive) setActiveId(routeActive);
       return;
     }
 
@@ -52,7 +59,7 @@ export function Nav() {
 
     for (const el of elements) observer.observe(el);
     return () => observer.disconnect();
-  }, [isHome, isProjectDetail, pathname]);
+  }, [isHome, routeActive, pathname]);
 
   // Single sliding pill: measure the active link's offset + width and transform
   // a single background element via CSS. Deterministic, no shared-layout quirks

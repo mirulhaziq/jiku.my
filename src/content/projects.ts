@@ -91,29 +91,9 @@ export const FLAGSHIP_PROJECTS: Project[] = [
   },
 ];
 
+// FST iPad Loan and KIZ Mobile moved to `src/content/work.ts` — they are
+// client engagements and live in the Work section, not More Projects.
 export const MORE_PROJECTS: Project[] = [
-  {
-    slug: 'fst-ipad-loan',
-    title: 'FST iPad Loan System',
-    oneLiner: 'A booking system for iPads and shared learning rooms with row-level security and a database-level guard against double-booking.',
-    impact: 'Delivered a working MVP to the faculty and demoed it to stakeholders.',
-    techStack: ['Supabase', 'PostgreSQL', 'Magic-link auth'],
-    role: 'Web Developer for the Faculty of Science and Technology at UKM.',
-    mockup: 'laptop',
-    category: 'client',
-    categoryLabel: 'Client · Faculty of Science and Technology',
-  },
-  {
-    slug: 'kiz-mobile',
-    title: 'Kolej Ibu Zain Mobile App',
-    oneLiner: 'A student registration app with an AR map and a Google Maps location for finding the college.',
-    impact: 'In use for onboarding at Kolej Ibu Zain.',
-    techStack: ['Mobile', 'Augmented Reality', 'Maps'],
-    role: 'Mobile Developer for Kolej Ibu Zain at UKM.',
-    mockup: 'phone',
-    category: 'client',
-    categoryLabel: 'Client · Kolej Ibu Zain',
-  },
   {
     slug: 'cakapnbayar',
     title: 'CAKAPnBAYAR',

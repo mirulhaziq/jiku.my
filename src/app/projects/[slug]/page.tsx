@@ -25,7 +25,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       </Link>
 
       <div className="mt-8 mb-10">
-        <ProjectImage project={project} aspect="16/9" priority />
+        <ProjectImage
+          source={{ slug: project.slug, label: project.title, image: project.image, imageAlt: project.imageAlt }}
+          aspect="16/9"
+          priority
+        />
       </div>
 
       <header className="pb-10 mb-12 border-b border-border">

@@ -1,5 +1,6 @@
 import { Hero } from '@/components/sections/Hero';
 import { Journey } from '@/components/sections/Journey';
+import { Work } from '@/components/sections/Work';
 import { FlagshipProjects } from '@/components/sections/FlagshipProjects';
 import { MoreProjects } from '@/components/sections/MoreProjects';
 import { Roadmap } from '@/components/sections/Roadmap';
@@ -14,6 +15,7 @@ export default function Home() {
     <main>
       <Hero />
       <Journey />
+      <Work />
       <FlagshipProjects />
       <MoreProjects />
       <Roadmap />

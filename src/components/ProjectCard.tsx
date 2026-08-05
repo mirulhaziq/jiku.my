@@ -59,7 +59,11 @@ export function ProjectCard({
         <span className={cn('inline-flex self-start items-center rounded-full border px-2.5 py-0.5 text-xs font-medium mb-3 relative z-10', CATEGORY_TINT[project.category])}>
           {project.categoryLabel}
         </span>
-        <ProjectImage project={project} aspect="16/9" className="mb-4" />
+        <ProjectImage
+          source={{ slug: project.slug, label: project.title, image: project.image, imageAlt: project.imageAlt }}
+          aspect="16/9"
+          className="mb-4"
+        />
         <h3 className="text-lg font-semibold mb-1 text-fg group-hover:text-accent transition-colors relative z-10">
           {project.title}
         </h3>
@@ -107,7 +111,11 @@ export function ProjectCard({
         </div>
 
         <div className="relative z-10 order-1 md:order-2">
-          <ProjectImage project={project} aspect="16/10" priority />
+          <ProjectImage
+            source={{ slug: project.slug, label: project.title, image: project.image, imageAlt: project.imageAlt }}
+            aspect="16/10"
+            priority
+          />
         </div>
       </Link>
     );
@@ -129,7 +137,10 @@ export function ProjectCard({
         </span>
       </div>
       <div className="relative z-10 mb-5">
-        <ProjectImage project={project} aspect="16/10" />
+        <ProjectImage
+          source={{ slug: project.slug, label: project.title, image: project.image, imageAlt: project.imageAlt }}
+          aspect="16/10"
+        />
       </div>
       <h3 className="text-xl md:text-2xl font-semibold tracking-tight mb-2 text-fg group-hover:text-accent transition-colors relative z-10">
         {project.title}
