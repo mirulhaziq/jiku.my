@@ -1,7 +1,4 @@
-'use client';
-
 import Link from 'next/link';
-import { useRef } from 'react';
 import type { WorkEntry, WorkKind } from '@/content/work';
 import { Badge } from './Badge';
 import { cn } from '@/lib/cn';
@@ -10,51 +7,28 @@ const KIND_META: Record<WorkKind, {
   label: string;
   tileBg: string;
   tileText: string;
-  glowRgb: string;
 }> = {
   internship: {
     label: 'Internship',
     tileBg: 'bg-blue-500',
     tileText: 'text-white',
-    glowRgb: '59, 130, 246',
   },
   client: {
     label: 'Client work',
     tileBg: 'bg-emerald-500',
     tileText: 'text-white',
-    glowRgb: '16, 185, 129',
   },
 };
 
 export function WorkCard({ entry }: { entry: WorkEntry }) {
-  const ref = useRef<HTMLAnchorElement>(null);
   const meta = KIND_META[entry.kind];
-
-  function handleMouseMove(e: React.MouseEvent<HTMLAnchorElement>) {
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    el.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-    el.style.setProperty('--my', `${e.clientY - rect.top}px`);
-  }
-
-  const glowStyle = {
-    background: `radial-gradient(700px circle at var(--mx, 50%) var(--my, 50%), rgba(${meta.glowRgb}, 0.08), transparent 40%)`,
-  } as React.CSSProperties;
 
   return (
     <Link
-      ref={ref}
       href={`/work/${entry.slug}`}
-      onMouseMove={handleMouseMove}
-      className="group relative overflow-hidden rounded-card border border-border bg-card p-5 md:p-6 transition hover:-translate-y-0.5 hover:shadow-lg"
+      className="group block rounded-card border border-border bg-card p-5 md:p-6 transition-colors hover:border-fg/20"
     >
-      <span
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
-        style={glowStyle}
-      />
-
-      <div className="relative z-10 flex items-start gap-4 md:gap-6">
+      <div className="flex items-start gap-4 md:gap-6">
         {/* Left: monogram tile — plain solid color, no shadow, no ring */}
         <div
           className={cn(
@@ -104,7 +78,7 @@ export function WorkCard({ entry }: { entry: WorkEntry }) {
         </div>
 
         {/* Right: impact display (only on md+, stacks below on mobile) */}
-        <div className="hidden md:block w-44 shrink-0 pl-2 border-l border-border/50">
+        <div className="hidden md:block w-44 shrink-0 pl-4">
           <p className="text-2xl lg:text-3xl font-semibold tracking-tight text-fg leading-tight">
             {entry.impactHeadline}
           </p>
@@ -113,7 +87,7 @@ export function WorkCard({ entry }: { entry: WorkEntry }) {
       </div>
 
       {/* Mobile impact: below everything since no room on the right */}
-      <div className="md:hidden relative z-10 mt-4 pt-4 border-t border-border/50">
+      <div className="md:hidden mt-4 pt-4 border-t border-border">
         <p className="text-2xl font-semibold tracking-tight text-fg leading-tight">
           {entry.impactHeadline}
         </p>
