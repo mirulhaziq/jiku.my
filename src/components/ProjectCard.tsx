@@ -105,7 +105,7 @@ export function ProjectCard({
               <Badge key={t}>{t}</Badge>
             ))}
           </div>
-          <span className="mt-6 inline-block text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="mt-6 inline-block text-xs text-blue-700 dark:text-blue-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
             Read case study →
           </span>
         </div>
@@ -158,7 +158,7 @@ export function ProjectCard({
           <Badge key={t}>{t}</Badge>
         ))}
       </div>
-      <span className="mt-4 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
+      <span className="mt-4 text-xs text-blue-700 dark:text-blue-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
         Read case study →
       </span>
     </Link>

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { WORK } from '@/content/work';
 import { Badge } from '@/components/Badge';
 import { InDevelopment } from '@/components/InDevelopment';
@@ -7,6 +8,30 @@ import { ProjectImage } from '@/components/ProjectImage';
 
 export function generateStaticParams() {
   return WORK.map((w) => ({ slug: w.slug }));
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const w = WORK.find((x) => x.slug === params.slug);
+  if (!w) return { title: 'Not found' };
+  const url = `https://jiku.my/work/${w.slug}`;
+  return {
+    title: `${w.role} at ${w.employer}`,
+    description: `${w.oneLiner} ${w.impactContext}`.trim(),
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title: `${w.role} at ${w.employer} — Amirul Haziq`,
+      description: `${w.oneLiner} ${w.impactContext}`.trim(),
+      images: w.image ? [w.image] : ['/og.png'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${w.role} at ${w.employer}`,
+      description: w.oneLiner,
+      images: w.image ? [w.image] : ['/og.png'],
+    },
+  };
 }
 
 export default function WorkPage({ params }: { params: { slug: string } }) {
@@ -31,7 +56,7 @@ export default function WorkPage({ params }: { params: { slug: string } }) {
       </div>
 
       <header className="pb-10 mb-12 border-b border-border">
-        <p className="text-xs uppercase tracking-widest text-accent font-medium mb-3">Case study</p>
+        <p className="text-xs uppercase tracking-widest text-blue-700 dark:text-blue-400 font-semibold mb-3">Case study</p>
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4">{entry.role}</h1>
         <p className="text-xl text-muted leading-relaxed mb-2">{entry.employer}</p>
         <p className="text-sm text-muted mb-6">{entry.dateRange} · {entry.location}</p>
@@ -39,7 +64,7 @@ export default function WorkPage({ params }: { params: { slug: string } }) {
         <p className="text-lg text-fg leading-relaxed mb-6">{entry.oneLiner}</p>
 
         <div className="rounded-lg border border-accent/20 bg-accent/5 p-4 mb-6">
-          <p className="text-xs uppercase tracking-widest text-accent font-medium mb-1">Impact</p>
+          <p className="text-xs uppercase tracking-widest text-blue-700 dark:text-blue-400 font-semibold mb-1">Impact</p>
           <p className="text-2xl font-semibold tracking-tight text-fg mb-1">{entry.impactHeadline}</p>
           <p className="text-sm text-muted leading-relaxed">{entry.impactContext}</p>
         </div>

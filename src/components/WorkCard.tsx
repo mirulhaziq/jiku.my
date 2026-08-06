@@ -98,7 +98,7 @@ export function WorkCard({ entry }: { entry: WorkEntry }) {
             ))}
           </div>
 
-          <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-accent transition-transform group-hover:translate-x-0.5">
+          <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700 dark:text-blue-400 transition-transform group-hover:translate-x-0.5">
             Read case study
             <span aria-hidden="true">→</span>
           </span>
@@ -106,7 +106,7 @@ export function WorkCard({ entry }: { entry: WorkEntry }) {
 
         {/* Right: impact display (only on md+, stacks below on mobile) */}
         <div className="hidden md:block w-48 shrink-0 pl-4">
-          <p className="text-[11px] uppercase tracking-widest font-semibold text-accent mb-2">
+          <p className="text-[11px] uppercase tracking-widest font-semibold text-blue-700 dark:text-blue-400 mb-2">
             Impact
           </p>
           <p className="text-2xl lg:text-3xl font-semibold tracking-tight text-fg leading-tight">
@@ -118,7 +118,7 @@ export function WorkCard({ entry }: { entry: WorkEntry }) {
 
       {/* Mobile impact: below everything since no room on the right */}
       <div className="md:hidden mt-5 pt-5 border-t border-border">
-        <p className="text-[11px] uppercase tracking-widest font-semibold text-accent mb-2">
+        <p className="text-[11px] uppercase tracking-widest font-semibold text-blue-700 dark:text-blue-400 mb-2">
           Impact
         </p>
         <p className="text-2xl font-semibold tracking-tight text-fg leading-tight">

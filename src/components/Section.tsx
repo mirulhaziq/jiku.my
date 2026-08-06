@@ -31,7 +31,7 @@ export function Section({
       {(kicker || title || intro) && (
         <header className="mb-10 md:mb-14">
           {kicker && (
-            <p className="text-xs uppercase tracking-widest text-accent font-medium mb-3">
+            <p className="text-xs uppercase tracking-widest text-blue-700 dark:text-blue-400 font-semibold mb-3">
               {kicker}
             </p>
           )}

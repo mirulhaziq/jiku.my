@@ -47,7 +47,7 @@ export function ToolboxCard({ group }: { group: ToolboxGroup }) {
           </span>
         </div>
 
-        <h4 className="text-lg font-semibold text-fg mb-4">{group.label}</h4>
+        <h3 className="text-lg font-semibold text-fg mb-4">{group.label}</h3>
 
         <div className="flex flex-wrap gap-1.5">
           {group.items.map((item) => (

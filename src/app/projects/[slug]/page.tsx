@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { FLAGSHIP_PROJECTS, MORE_PROJECTS } from '@/content/projects';
 import { Badge } from '@/components/Badge';
 import { InDevelopment } from '@/components/InDevelopment';
@@ -9,6 +10,30 @@ const ALL = [...FLAGSHIP_PROJECTS, ...MORE_PROJECTS];
 
 export function generateStaticParams() {
   return ALL.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const p = ALL.find((x) => x.slug === params.slug);
+  if (!p) return { title: 'Not found' };
+  const url = `https://jiku.my/projects/${p.slug}`;
+  return {
+    title: `${p.title} — case study`,
+    description: `${p.oneLiner} ${p.impact}`.trim(),
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title: `${p.title} — case study by Amirul Haziq`,
+      description: `${p.oneLiner} ${p.impact}`.trim(),
+      images: p.image ? [p.image] : ['/og.png'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${p.title} — case study`,
+      description: p.oneLiner,
+      images: p.image ? [p.image] : ['/og.png'],
+    },
+  };
 }
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
@@ -33,11 +58,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       </div>
 
       <header className="pb-10 mb-12 border-b border-border">
-        <p className="text-xs uppercase tracking-widest text-accent font-medium mb-3">Case study</p>
+        <p className="text-xs uppercase tracking-widest text-blue-700 dark:text-blue-400 font-semibold mb-3">Case study</p>
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4">{project.title}</h1>
         <p className="text-xl text-muted leading-relaxed mb-6">{project.oneLiner}</p>
         <div className="rounded-lg border border-accent/20 bg-accent/5 p-4 mb-4">
-          <p className="text-xs uppercase tracking-widest text-accent font-medium mb-1">Impact</p>
+          <p className="text-xs uppercase tracking-widest text-blue-700 dark:text-blue-400 font-semibold mb-1">Impact</p>
           <p className="text-sm text-fg leading-relaxed">{project.impact}</p>
         </div>
         <p className="text-sm text-muted mb-4">

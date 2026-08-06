@@ -117,11 +117,18 @@ export default function TiltedCard({
           scale,
         }}
       >
+        {/* Explicit img (not next/image) because motion needs a direct element
+             for tilt. We serve the WebP directly — small (17KB) and preloaded
+             via <link rel="preload"> in layout.tsx so it's the LCP resource. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <motion.img
           src={imageSrc}
           alt={altText}
           className="tilted-card-img"
+          fetchPriority="high"
+          decoding="async"
+          width={parseInt(String(imageWidth))}
+          height={parseInt(String(imageHeight))}
           style={{
             width: imageWidth,
             height: imageHeight,

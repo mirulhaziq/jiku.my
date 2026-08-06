@@ -13,12 +13,12 @@ export function InDevelopment() {
           style={{ width: '100%', height: '100%' }}
         />
       </div>
-      <p className="mt-4 text-xs uppercase tracking-widest text-accent font-medium">
+      <p className="mt-4 text-xs uppercase tracking-widest text-blue-700 dark:text-blue-400 font-semibold">
         In development
       </p>
-      <h3 className="mt-2 text-2xl md:text-3xl font-semibold tracking-tight text-fg">
+      <h2 className="mt-2 text-2xl md:text-3xl font-semibold tracking-tight text-fg">
         Stay tuned
-      </h3>
+      </h2>
       <p className="mt-3 text-muted max-w-md leading-relaxed">
         The full case study is being written up. Check back soon.
       </p>

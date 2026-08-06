@@ -66,7 +66,7 @@ export function Hero() {
 
         <div className="justify-self-center md:justify-self-end">
           <TiltedCard
-            imageSrc="/face.png"
+            imageSrc="/face.webp"
             altText="Amirul Haziq"
             captionText="That's me."
             containerHeight="375px"
