@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Emit source maps in production so browsers / Sentry can map minified stack
-  // traces back to original source. Also silences a Lighthouse best-practice
-  // warning about missing source maps for large first-party JS.
-  productionBrowserSourceMaps: true,
-  // Content-Security-Policy and small security headers.
+  // Source maps disabled in production — enabling them slightly bloated
+  // chunks and regressed Lighthouse Perf. Best-practice warning about
+  // missing maps is acceptable trade for a leaner bundle.
+  productionBrowserSourceMaps: false,
+  // Security headers.
   async headers() {
     return [
       {
