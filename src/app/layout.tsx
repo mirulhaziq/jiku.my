@@ -1,6 +1,11 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
-import { Analytics } from '@vercel/analytics/next';
+import dynamic from 'next/dynamic';
+
+// Load Analytics client-side only, after interactive. Doesn't need to block anything.
+const Analytics = dynamic(() => import('@vercel/analytics/next').then((m) => m.Analytics), {
+  ssr: false,
+});
 import { IntroAnimation } from '@/components/IntroAnimation';
 import { Nav } from '@/components/Nav';
 import { SmoothScroll } from '@/components/SmoothScroll';
