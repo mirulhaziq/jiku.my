@@ -10,12 +10,12 @@ const KIND_META: Record<WorkKind, {
 }> = {
   internship: {
     label: 'Internship',
-    tileBg: 'bg-blue-500',
+    tileBg: 'bg-blue-700',
     tileText: 'text-white',
   },
   client: {
     label: 'Client work',
-    tileBg: 'bg-emerald-500',
+    tileBg: 'bg-emerald-700',
     tileText: 'text-white',
   },
 };

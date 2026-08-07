@@ -1,5 +1,6 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { IntroAnimation } from '@/components/IntroAnimation';
 import { Nav } from '@/components/Nav';
 import { SmoothScroll } from '@/components/SmoothScroll';
@@ -171,6 +172,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SmoothScroll>{children}</SmoothScroll>
           </IntroAnimation>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
