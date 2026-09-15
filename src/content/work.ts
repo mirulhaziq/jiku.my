@@ -24,11 +24,11 @@ export const WORK: WorkEntry[] = [
     employer: 'RHB Bank, Group Digital',
     employerShort: 'RHB',
     role: 'Software Engineering Intern (Industrial Training)',
-    dateRange: 'March 2026 to now',
+    dateRange: 'March to August 2026',
     dateISO: '2026-03',
     location: 'Kuala Lumpur, Malaysia',
     kind: 'internship',
-    oneLiner: 'Working on the MyDID and Mobile Banking App integration proof of concept.',
+    oneLiner: 'Worked on the MyDID and Mobile Banking App integration proof of concept.',
     bullets: [
       'Designed and documented OAS 3.0 REST specs for the mBK integration, improving handoff efficiency for the engineering team.',
       'Built the e-verification feature UI and API polling for the MyDID SSO proof of concept.',

@@ -196,9 +196,8 @@ const NAV_ICON_CLASS = 'w-5 h-5 md:hidden';
 function JourneyIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={NAV_ICON_CLASS} aria-hidden="true">
-      <path d="M4 20c2-4 4-4 6-8s2-4 4-8" />
-      <circle cx="4.5" cy="19.5" r="1.2" fill="currentColor" stroke="none" />
-      <circle cx="14" cy="4.5" r="1.2" fill="currentColor" stroke="none" />
+      <path d="M5 21V4" />
+      <path d="M5 4h9l-2.2 3.5L14 11H5" />
     </svg>
   );
 }
