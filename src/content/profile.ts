@@ -1,7 +1,7 @@
 export const PROFILE = {
   name: 'Amirul Haziq',
   tagline: 'I build AI and fintech products for Southeast Asia.',
-  statusBadge: 'Software Engineering intern at RHB Group Digital',
+  statusBadge: 'Former Software Engineering Intern at RHB Group Digital',
   availabilityBadge: 'Open to work from 1 September 2026',
   availabilityActive: true,
   email: 'ahaziqshazlee@gmail.com',

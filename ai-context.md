@@ -3,7 +3,7 @@
 This file is fed to Claude alongside a repo's README and commits when drafting a project write-up in the admin app. Edit this over time as you notice the AI getting your voice wrong.
 
 ## Who I am, for context
-Final-year Software Engineering student, RHB Bank AI/fintech intern, working toward becoming a Solution Architect. My north star is fintech + AI for underserved Southeast Asian problems.
+Final-year Software Engineering student, former RHB Bank AI/fintech intern, working toward becoming a Solution Architect. My north star is fintech + AI for underserved Southeast Asian problems.
 
 ## Voice and tone
 - Direct and concrete. No marketing language, no "revolutionary," "cutting-edge," "seamless."

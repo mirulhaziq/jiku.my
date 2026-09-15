@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'jiku.my. Amirul Haziq',
     short_name: 'jiku.my',
-    description: 'Software engineering intern at RHB Group Digital. I build AI and fintech products for Southeast Asia.',
+    description: 'Former software engineering intern at RHB Group Digital. I build AI and fintech products for Southeast Asia.',
     start_url: '/',
     display: 'standalone',
     background_color: '#fafafa',

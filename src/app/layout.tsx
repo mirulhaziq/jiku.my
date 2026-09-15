@@ -12,7 +12,7 @@ import { SmoothScroll } from '@/components/SmoothScroll';
 import { ThemeProvider } from '@/components/ThemeProvider';
 
 const DESCRIPTION =
-  'Amirul Haziq is a final-year Software Engineering student at UKM, on industrial training at RHB Bank Group Digital, and founding-team Mobile Full-Stack Developer at VERiQ. I build AI and fintech products for Southeast Asia. Open to full-time software engineering roles from September 2026.';
+  'Amirul Haziq is a final-year Software Engineering student at UKM, a former industrial trainee at RHB Bank Group Digital, and founding-team Mobile Full-Stack Developer at VERiQ. I build AI and fintech products for Southeast Asia. Open to full-time software engineering roles from September 2026.';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://jiku.my'),
@@ -102,16 +102,22 @@ const PERSON_JSONLD = {
   alternateName: ['Amirul Haziq', 'Jiku'],
   url: 'https://jiku.my',
   image: 'https://jiku.my/face.webp',
-  jobTitle: 'Software Engineering Intern',
+  jobTitle: 'Mobile Full-Stack Developer',
   worksFor: [
-    { '@type': 'Organization', name: 'RHB Bank, Group Digital', url: 'https://www.rhbgroup.com/' },
     { '@type': 'Organization', name: 'VERiQ', url: 'https://veriq.my' },
   ],
-  alumniOf: {
-    '@type': 'CollegeOrUniversity',
-    name: 'Universiti Kebangsaan Malaysia',
-    url: 'https://www.ukm.my',
-  },
+  alumniOf: [
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Universiti Kebangsaan Malaysia',
+      url: 'https://www.ukm.my',
+    },
+    {
+      '@type': 'Organization',
+      name: 'RHB Bank, Group Digital',
+      url: 'https://www.rhbgroup.com/',
+    },
+  ],
   nationality: { '@type': 'Country', name: 'Malaysia' },
   address: {
     '@type': 'PostalAddress',

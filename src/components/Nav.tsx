@@ -6,14 +6,14 @@ import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/cn';
 
-type NavLink = { href: string; label: string; id: string };
+type NavLink = { href: string; label: string; id: string; icon: () => JSX.Element };
 
 const LINKS: NavLink[] = [
-  { href: '/#journey', label: 'Journey', id: 'journey' },
-  { href: '/#work', label: 'Work', id: 'work' },
-  { href: '/#projects', label: 'Projects', id: 'projects' },
-  { href: '/#roadmap', label: 'Roadmap', id: 'roadmap' },
-  { href: '/#contact', label: 'Contact', id: 'contact' },
+  { href: '/#journey', label: 'Journey', id: 'journey', icon: JourneyIcon },
+  { href: '/#work', label: 'Work', id: 'work', icon: WorkIcon },
+  { href: '/#projects', label: 'Projects', id: 'projects', icon: ProjectsIcon },
+  { href: '/#roadmap', label: 'Roadmap', id: 'roadmap', icon: RoadmapIcon },
+  { href: '/#contact', label: 'Contact', id: 'contact', icon: ContactIcon },
 ];
 
 const OBSERVED_IDS = ['hero', ...LINKS.map((l) => l.id)];
@@ -125,19 +125,25 @@ export function Nav() {
 
         {LINKS.map((link) => {
           const isActive = activeId === link.id;
+          const Icon = link.icon;
           return (
             <Link
               key={link.href}
               href={link.href}
               data-nav-id={link.id}
               className={cn(
-                'relative inline-flex items-center h-9 rounded-full px-4 text-sm font-medium transition-colors',
+                'relative inline-flex items-center justify-center h-9 rounded-full transition-colors',
+                'w-11 md:w-auto px-0 md:px-4 text-sm font-medium',
                 isActive
                   ? 'text-white dark:text-neutral-900'
                   : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100',
               )}
             >
-              <span className="relative z-10">{link.label}</span>
+              <span className="relative z-10 flex items-center gap-2">
+                <Icon />
+                <span className="hidden md:inline">{link.label}</span>
+                <span className="sr-only md:hidden">{link.label}</span>
+              </span>
             </Link>
           );
         })}
@@ -180,6 +186,58 @@ function ThemeToggle() {
       {iconTheme === 'light' && <SunIcon />}
       {iconTheme === 'system' && <AutoIcon />}
     </button>
+  );
+}
+
+// Nav link icons — shown alone on mobile (compact tab bar), hidden on
+// desktop where the text label carries the item instead.
+const NAV_ICON_CLASS = 'w-5 h-5 md:hidden';
+
+function JourneyIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={NAV_ICON_CLASS} aria-hidden="true">
+      <path d="M4 20c2-4 4-4 6-8s2-4 4-8" />
+      <circle cx="4.5" cy="19.5" r="1.2" fill="currentColor" stroke="none" />
+      <circle cx="14" cy="4.5" r="1.2" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function WorkIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={NAV_ICON_CLASS} aria-hidden="true">
+      <rect x="3" y="7" width="18" height="13" rx="2" />
+      <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18" />
+    </svg>
+  );
+}
+
+function ProjectsIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={NAV_ICON_CLASS} aria-hidden="true">
+      <rect x="3" y="4" width="7" height="7" rx="1.5" />
+      <rect x="14" y="4" width="7" height="7" rx="1.5" />
+      <rect x="3" y="15" width="7" height="7" rx="1.5" />
+      <rect x="14" y="15" width="7" height="7" rx="1.5" />
+    </svg>
+  );
+}
+
+function RoadmapIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={NAV_ICON_CLASS} aria-hidden="true">
+      <path d="M4 19V9l5-3 6 3 5-3v10l-5 3-6-3-5 3z" />
+      <path d="M9 6v10M15 9v10" />
+    </svg>
+  );
+}
+
+function ContactIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={NAV_ICON_CLASS} aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m4 7 8 6 8-6" />
+    </svg>
   );
 }
 
