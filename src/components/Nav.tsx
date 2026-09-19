@@ -12,6 +12,7 @@ const LINKS: NavLink[] = [
   { href: '/#journey', label: 'Journey', id: 'journey', icon: JourneyIcon },
   { href: '/#work', label: 'Work', id: 'work', icon: WorkIcon },
   { href: '/#projects', label: 'Projects', id: 'projects', icon: ProjectsIcon },
+  { href: '/blog', label: 'Blog', id: 'blog', icon: BlogIcon },
   { href: '/#roadmap', label: 'Roadmap', id: 'roadmap', icon: RoadmapIcon },
   { href: '/#contact', label: 'Contact', id: 'contact', icon: ContactIcon },
 ];
@@ -25,6 +26,7 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 function routeActiveId(pathname: string): string | null {
   if (pathname.startsWith('/work/')) return 'work';
   if (pathname.startsWith('/projects/')) return 'projects';
+  if (pathname === '/blog' || pathname.startsWith('/blog/')) return 'blog';
   return null;
 }
 
@@ -218,6 +220,16 @@ function ProjectsIcon() {
       <rect x="14" y="4" width="7" height="7" rx="1.5" />
       <rect x="3" y="15" width="7" height="7" rx="1.5" />
       <rect x="14" y="15" width="7" height="7" rx="1.5" />
+    </svg>
+  );
+}
+
+function BlogIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={NAV_ICON_CLASS} aria-hidden="true">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      <path d="M8 7h8M8 11h8M8 15h5" />
     </svg>
   );
 }
