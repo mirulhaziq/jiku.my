@@ -4,7 +4,7 @@ import { Work } from '@/components/sections/Work';
 import { FlagshipProjects } from '@/components/sections/FlagshipProjects';
 import { MoreProjects } from '@/components/sections/MoreProjects';
 import { Roadmap } from '@/components/sections/Roadmap';
-import { Journal } from '@/components/sections/Journal';
+import { Blog } from '@/components/sections/Blog';
 import { LinkedInActivity } from '@/components/sections/LinkedInActivity';
 import { GitHubActivity } from '@/components/sections/GitHubActivity';
 import { TechStack } from '@/components/sections/TechStack';
@@ -19,7 +19,7 @@ export default function Home() {
       <FlagshipProjects />
       <MoreProjects />
       <Roadmap />
-      <Journal />
+      <Blog />
       <LinkedInActivity />
       <GitHubActivity />
       <TechStack />
