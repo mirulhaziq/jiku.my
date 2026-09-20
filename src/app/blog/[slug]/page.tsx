@@ -57,12 +57,20 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-20 md:py-28">
-      <Link
-        href="/blog"
-        className="inline-flex items-center gap-1 text-sm text-muted hover:text-fg transition"
-      >
-        <span aria-hidden="true">←</span> Back to blog
-      </Link>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+        <Link
+          href="/#blog"
+          className="inline-flex items-center gap-1 text-muted hover:text-fg transition"
+        >
+          <span aria-hidden="true">←</span> Back to portfolio
+        </Link>
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1 text-muted hover:text-fg transition"
+        >
+          All posts
+        </Link>
+      </div>
 
       <header className="mt-8 mb-12 pb-10 border-b border-border">
         <p className="text-xs uppercase tracking-widest text-blue-700 dark:text-blue-400 font-semibold mb-3">
