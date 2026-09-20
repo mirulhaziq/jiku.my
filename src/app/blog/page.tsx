@@ -24,10 +24,10 @@ export default function BlogIndexPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-20 md:py-28">
       <Link
-        href="/"
+        href="/#blog"
         className="inline-flex items-center gap-1 text-sm text-muted hover:text-fg transition"
       >
-        <span aria-hidden="true">←</span> Home
+        <span aria-hidden="true">←</span> Back to portfolio
       </Link>
 
       <header className="mt-8 mb-12 pb-10 border-b border-border">
