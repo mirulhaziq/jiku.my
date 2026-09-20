@@ -8,7 +8,7 @@ export function Contact() {
       bordered
       kicker="Contact"
       title="Get in touch"
-      intro="I graduate in September 2026 and I am looking for a software engineering role focused on AI applications. Reach out on any of these and I will read it."
+      intro={`${PROFILE.location}. Open to full-time software engineering roles focused on AI applications from September 2026. Email is the fastest way to reach me.`}
     >
       <div className="flex flex-wrap gap-3">
         <a
