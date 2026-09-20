@@ -12,7 +12,7 @@ const LINKS: NavLink[] = [
   { href: '/#journey', label: 'Journey', id: 'journey', icon: JourneyIcon },
   { href: '/#work', label: 'Work', id: 'work', icon: WorkIcon },
   { href: '/#projects', label: 'Projects', id: 'projects', icon: ProjectsIcon },
-  { href: '/blog', label: 'Blog', id: 'blog', icon: BlogIcon },
+  { href: '/#blog', label: 'Blog', id: 'blog', icon: BlogIcon },
   { href: '/#roadmap', label: 'Roadmap', id: 'roadmap', icon: RoadmapIcon },
   { href: '/#contact', label: 'Contact', id: 'contact', icon: ContactIcon },
 ];
