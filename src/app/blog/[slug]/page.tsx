@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Badge } from '@/components/Badge';
+import { MarkdownContent } from '@/components/MarkdownContent';
 import { getAllPosts, getPost } from '@/lib/posts';
 
 export function generateStaticParams() {
@@ -53,7 +54,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = getPost(params.slug);
   if (!post) notFound();
 
-  const paragraphs = post.content.split(/\n\n+/).filter(Boolean);
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-20 md:py-28">
@@ -85,12 +85,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       </header>
 
-      <article className="space-y-6 text-lg leading-relaxed text-fg">
-        {paragraphs.map((paragraph) => (
-          <p key={paragraph.slice(0, 48)} className="text-muted leading-relaxed">
-            {paragraph}
-          </p>
-        ))}
+      <article className="text-fg">
+        <MarkdownContent content={post.content} />
       </article>
     </main>
   );

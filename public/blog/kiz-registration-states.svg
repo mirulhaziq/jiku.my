@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="220" viewBox="0 0 720 220" role="img" aria-labelledby="t d">
+  <title id="t">Registration account states</title>
+  <desc id="d">unverified to pending to active</desc>
+  <rect width="720" height="220" fill="#ffffff"/>
+  <text x="24" y="36" style="font:700 15px Inter,system-ui,sans-serif;fill:#0f172a">Registration account states</text>
+  <rect x="40" y="80" width="140" height="56" rx="10" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="60" y="114" style="font:600 14px Inter,system-ui,sans-serif;fill:#0f172a">unverified</text>
+  <path d="M190 108 H240" stroke="#334155" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="188" y="96" style="font:500 10px Inter,system-ui,sans-serif;fill:#64748b">verify email</text>
+  <rect x="250" y="80" width="140" height="56" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+  <text x="285" y="114" style="font:600 14px Inter,system-ui,sans-serif;fill:#0f172a">pending</text>
+  <path d="M400 108 H450" stroke="#334155" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="398" y="96" style="font:500 10px Inter,system-ui,sans-serif;fill:#64748b">matric on intake</text>
+  <rect x="460" y="80" width="140" height="56" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+  <text x="502" y="114" style="font:600 14px Inter,system-ui,sans-serif;fill:#0f172a">active</text>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <text x="40" y="180" style="font:500 12px Inter,system-ui,sans-serif;fill:#475569">Admin-created accounts skip verify and land on active.</text>
+  <text x="40" y="200" style="font:500 12px Inter,system-ui,sans-serif;fill:#475569">@siswa.ukm.edu.my → ahli · @ukm.edu.my → staf · invites can override.</text>
+</svg>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
+  <title id="title">KIZ Super App architecture</title>
+  <desc id="desc">Clients talk to a Next.js app with auth, server actions, AR, registration and check-in. Data lives in Postgres. External services are Resend, OSRM, OpenStreetMap, Sheets and AI.</desc>
+  <defs>
+    <style>
+      .box { fill: #f8fafc; stroke: #0f172a; stroke-width: 1.5; }
+      .box-ext { fill: #eff6ff; stroke: #1d4ed8; stroke-width: 1.5; }
+      .box-data { fill: #ecfdf5; stroke: #047857; stroke-width: 1.5; }
+      .label { font: 600 13px Inter, system-ui, sans-serif; fill: #0f172a; }
+      .sub { font: 500 11px Inter, system-ui, sans-serif; fill: #475569; }
+      .title { font: 700 16px Inter, system-ui, sans-serif; fill: #0f172a; }
+      .group { fill: none; stroke: #cbd5e1; stroke-width: 1.5; stroke-dasharray: 4 3; }
+      .group-label { font: 600 11px Inter, system-ui, sans-serif; fill: #64748b; }
+      .arrow { stroke: #334155; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect width="960" height="640" fill="#ffffff"/>
+  <text x="24" y="32" class="title">KIZ Super App architecture</text>
+
+  <!-- Clients -->
+  <rect x="24" y="56" width="160" height="140" rx="10" class="group"/>
+  <text x="36" y="76" class="group-label">Clients</text>
+  <rect x="40" y="92" width="128" height="40" rx="8" class="box"/>
+  <text x="52" y="116" class="label">Phone</text>
+  <rect x="40" y="144" width="128" height="40" rx="8" class="box"/>
+  <text x="52" y="168" class="label">Admin browser</text>
+
+  <!-- Next app -->
+  <rect x="220" y="56" width="460" height="400" rx="12" class="group"/>
+  <text x="236" y="76" class="group-label">Next.js App Router</text>
+  <rect x="240" y="92" width="200" height="44" rx="8" class="box"/>
+  <text x="252" y="118" class="label">proxy.ts auth guard</text>
+  <rect x="460" y="92" width="200" height="44" rx="8" class="box"/>
+  <text x="472" y="110" class="label">Role pages</text>
+  <text x="472" y="126" class="sub">/[role]/…</text>
+  <rect x="240" y="152" width="200" height="44" rx="8" class="box"/>
+  <text x="252" y="170" class="label">Server Actions</text>
+  <text x="252" y="186" class="sub">+ lib/rbac</text>
+  <rect x="460" y="152" width="200" height="44" rx="8" class="box"/>
+  <text x="472" y="178" class="label">Auth.js JWT</text>
+  <rect x="240" y="216" width="420" height="56" rx="8" class="box"/>
+  <text x="252" y="240" class="label">AR Directory</text>
+  <text x="252" y="256" class="sub">camera + GPS + compass · Leaflet mini-map · OSRM foot paths</text>
+  <rect x="240" y="288" width="200" height="56" rx="8" class="box"/>
+  <text x="252" y="312" class="label">Registration</text>
+  <text x="252" y="328" class="sub">/daftar → Resend → /sahkan</text>
+  <rect x="460" y="288" width="200" height="56" rx="8" class="box"/>
+  <text x="472" y="312" class="label">Check-in</text>
+  <text x="472" y="328" class="sub">QR page + SignaturePad</text>
+  <rect x="240" y="360" width="420" height="72" rx="8" class="box"/>
+  <text x="252" y="384" class="label">Feature modules</text>
+  <text x="252" y="402" class="sub">Kad Maya · bookings · helpdesk · KIZ-AI · announcements · guide</text>
+  <text x="252" y="418" class="sub">chat · parcels · lost &amp; found · accommodation · settings</text>
+
+  <!-- Data -->
+  <rect x="720" y="56" width="216" height="180" rx="12" class="group"/>
+  <text x="736" y="76" class="group-label">Data</text>
+  <rect x="736" y="92" width="184" height="56" rx="8" class="box-data"/>
+  <text x="748" y="116" class="label">PostgreSQL</text>
+  <text x="748" y="132" class="sub">Prisma 7</text>
+  <rect x="736" y="164" width="184" height="52" rx="8" class="box-data"/>
+  <text x="748" y="188" class="label">Uploads</text>
+  <text x="748" y="204" class="sub">signatures · PDFs · logos</text>
+
+  <!-- External -->
+  <rect x="720" y="260" width="216" height="280" rx="12" class="group"/>
+  <text x="736" y="280" class="group-label">External</text>
+  <rect x="736" y="296" width="184" height="36" rx="8" class="box-ext"/>
+  <text x="748" y="318" class="label">Resend email</text>
+  <rect x="736" y="344" width="184" height="36" rx="8" class="box-ext"/>
+  <text x="748" y="366" class="label">OSRM foot router</text>
+  <rect x="736" y="392" width="184" height="36" rx="8" class="box-ext"/>
+  <text x="748" y="414" class="label">OpenStreetMap</text>
+  <rect x="736" y="440" width="184" height="36" rx="8" class="box-ext"/>
+  <text x="748" y="462" class="label">Google Sheets intake</text>
+  <rect x="736" y="488" width="184" height="36" rx="8" class="box-ext"/>
+  <text x="748" y="510" class="label">Gemini / Ollama</text>
+
+  <!-- arrows -->
+  <path class="arrow" d="M168 112 H220"/>
+  <path class="arrow" d="M168 164 H220"/>
+  <path class="arrow" d="M680 170 H720"/>
+  <path class="arrow" d="M660 316 H720"/>
+  <path class="arrow" d="M660 244 H720"/>
+  <path class="arrow" d="M440 216 V288"/>
+
+  <text x="24" y="600" class="sub">Identity anchor = matric ID. Email proves UKM ownership. Intake CSV has no email column.</text>
+  <text x="24" y="620" class="sub">Roles: superadmin · admin_kiz · pengetua · fellow · ahli · staf</text>
+</svg>

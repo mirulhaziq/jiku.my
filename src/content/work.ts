@@ -14,6 +14,8 @@ export type WorkEntry = {
   impactHeadline: string;
   impactContext: string;
   techStack: string[];
+  /** Optional logo under /logos — shown instead of the monogram tile. */
+  employerLogo?: string;
   image?: string;
   imageAlt?: string;
 };
@@ -23,6 +25,7 @@ export const WORK: WorkEntry[] = [
     slug: 'rhb-industrial',
     employer: 'RHB Bank, Group Digital',
     employerShort: 'RHB',
+    employerLogo: '/logos/rhb.png',
     role: 'Software Engineering Intern (Industrial Training)',
     dateRange: 'March to August 2026',
     dateISO: '2026-03',
@@ -41,20 +44,22 @@ export const WORK: WorkEntry[] = [
   {
     slug: 'kiz-mobile',
     employer: 'UKM Kolej Ibu Zain',
-    employerShort: 'UKM',
+    employerShort: 'KIZ',
+    employerLogo: '/logos/kiz.png',
     role: 'Mobile Developer',
     dateRange: 'June 2026 to now',
     dateISO: '2026-06-11',
     location: 'Bangi, Malaysia',
     kind: 'client',
-    oneLiner: 'Student registration app with an AR map and Google Maps location.',
+    oneLiner: 'KIZ Super App: resident ops for Kolej Ibu Zain, with AR campus navigation and registration.',
     bullets: [
-      'Built the student college registration flow.',
-      'Added a location feature so students can find the college via an AR map or Google Maps.',
+      'Shipped the resident stack: auth, Kad Maya, bookings, helpdesk, parcels, lost and found, announcements, and more.',
+      'Built AR Directory (camera + compass + OSRM walking paths) and the matric-based registration / intake unlock flow.',
+      'Added QR counter check-in with digital signatures so the office can drop the paper sign-in book.',
     ],
     impactHeadline: 'Live at KIZ',
-    impactContext: 'Onboarding tool used by Kolej Ibu Zain students.',
-    techStack: ['Mobile', 'AR', 'Google Maps'],
+    impactContext: 'Onboarding and daily ops tool used by Kolej Ibu Zain students and staff.',
+    techStack: ['Next.js', 'Prisma', 'AR', 'Auth.js'],
   },
   {
     slug: 'fst-ipad-loan',
@@ -79,6 +84,7 @@ export const WORK: WorkEntry[] = [
     slug: 'rhb-summer-2025',
     employer: 'RHB Bank',
     employerShort: 'RHB',
+    employerLogo: '/logos/rhb.png',
     role: 'Software Engineering Intern (Summer Program)',
     dateRange: 'June to August 2025',
     dateISO: '2025-06',

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { WorkEntry, WorkKind } from '@/content/work';
 import { Badge } from './Badge';
@@ -36,23 +37,35 @@ export function WorkCard({ entry }: { entry: WorkEntry }) {
       )}
     >
       <div className="flex items-start gap-4 md:gap-6">
-        {/* Left: monogram tile — solid color with iOS glass highlight */}
+        {/* Left: employer logo or monogram tile */}
         <div
           className={cn(
             'relative w-14 h-14 md:w-16 md:h-16 rounded-2xl grid place-items-center shrink-0 overflow-hidden',
-            meta.tileBg,
-            meta.tileText,
+            entry.employerLogo
+              ? 'bg-white border border-border'
+              : cn(meta.tileBg, meta.tileText),
           )}
           aria-hidden="true"
         >
-          {/* Top-to-transparent light highlight for glass depth */}
-          <span
-            className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent"
-            aria-hidden="true"
-          />
-          <span className="relative text-sm md:text-base font-bold tracking-wider">
-            {entry.employerShort}
-          </span>
+          {entry.employerLogo ? (
+            <Image
+              src={entry.employerLogo}
+              alt=""
+              width={64}
+              height={64}
+              className="object-contain p-2 w-full h-full"
+            />
+          ) : (
+            <>
+              <span
+                className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent"
+                aria-hidden="true"
+              />
+              <span className="relative text-sm md:text-base font-bold tracking-wider">
+                {entry.employerShort}
+              </span>
+            </>
+          )}
         </div>
 
         {/* Middle: role, employer, date row, one-liner, bullets, tech */}
