@@ -63,8 +63,9 @@ export const WORK: WorkEntry[] = [
   },
   {
     slug: 'fst-ipad-loan',
-    employer: 'UKM Faculty of Science and Technology',
-    employerShort: 'UKM',
+    employer: 'UKM Fakulti Sains dan Teknologi',
+    employerShort: 'FST',
+    employerLogo: '/logos/ukm.png',
     role: 'Web Developer',
     dateRange: 'June 2026 to now',
     dateISO: '2026-06-10',

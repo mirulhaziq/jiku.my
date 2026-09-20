@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
 import type { Project, ProjectCategory } from '@/content/projects';
@@ -56,8 +57,15 @@ export function ProjectCard({
         className="group relative flex flex-col overflow-hidden rounded-card border border-border bg-card p-4 md:p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
       >
         <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100" style={glowStyle} />
-        <span className={cn('inline-flex self-start items-center rounded-full border px-2.5 py-0.5 text-xs font-medium mb-3 relative z-10', CATEGORY_TINT[project.category])}>
-          {project.categoryLabel}
+        <span className="inline-flex self-start items-center gap-2 mb-3 relative z-10">
+          {project.orgLogo ? (
+            <span className="relative h-7 w-7 shrink-0 overflow-hidden rounded-md border border-border bg-white">
+              <Image src={project.orgLogo} alt="" fill className="object-contain p-0.5" sizes="28px" />
+            </span>
+          ) : null}
+          <span className={cn('inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium', CATEGORY_TINT[project.category])}>
+            {project.categoryLabel}
+          </span>
         </span>
         <ProjectImage
           source={{ slug: project.slug, label: project.title, image: project.image, imageAlt: project.imageAlt }}
@@ -88,8 +96,15 @@ export function ProjectCard({
         <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100" style={glowStyle} />
 
         <div className="relative z-10 order-2 md:order-1">
-          <span className={cn('inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium mb-4', CATEGORY_TINT[project.category])}>
-            {project.categoryLabel}
+          <span className="inline-flex items-center gap-2 mb-4">
+            {project.orgLogo ? (
+              <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md border border-border bg-white">
+                <Image src={project.orgLogo} alt="" fill className="object-contain p-0.5" sizes="32px" />
+              </span>
+            ) : null}
+            <span className={cn('inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium', CATEGORY_TINT[project.category])}>
+              {project.categoryLabel}
+            </span>
           </span>
           <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-3 text-fg group-hover:text-accent transition-colors">
             {project.title}
@@ -132,8 +147,15 @@ export function ProjectCard({
       <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100" style={glowStyle} />
 
       <div className="relative z-10 mb-4">
-        <span className={cn('inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium', CATEGORY_TINT[project.category])}>
-          {project.categoryLabel}
+        <span className="inline-flex items-center gap-2">
+          {project.orgLogo ? (
+            <span className="relative h-7 w-7 shrink-0 overflow-hidden rounded-md border border-border bg-white">
+              <Image src={project.orgLogo} alt="" fill className="object-contain p-0.5" sizes="28px" />
+            </span>
+          ) : null}
+          <span className={cn('inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium', CATEGORY_TINT[project.category])}>
+            {project.categoryLabel}
+          </span>
         </span>
       </div>
       <div className="relative z-10 mb-5">

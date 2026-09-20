@@ -21,6 +21,8 @@ export type Project = {
   categoryLabel: string;   // display text for the category chip, e.g. "Hackathon · 2nd place"
   image?: string;
   imageAlt?: string;
+  /** Optional org mark shown beside the category chip. */
+  orgLogo?: string;
 };
 
 export const FLAGSHIP_PROJECTS: Project[] = [
@@ -35,7 +37,8 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     role: 'Lead Commercialiser on the InnoX UKM programme.',
     mockup: 'laptop',
     category: 'programme',
-    categoryLabel: 'InnoX UKM programme',
+    categoryLabel: 'InnoX@UKM · INOVASI@UKM',
+    orgLogo: '/logos/inovasi.png',
   },
   {
     slug: 'bac',
