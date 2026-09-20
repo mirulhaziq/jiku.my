@@ -29,9 +29,11 @@ export function Hero() {
             {PROFILE.tagline}
           </p>
           <p className="mt-3 text-base md:text-lg text-fg/80 max-w-2xl leading-relaxed">
-            Actively looking for a full-time software engineering role focused on AI applications, starting September 2026.
+            Actively looking for a full-time software engineering role focused on AI
+            applications, starting September 2026.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href={PROFILE.resumeHref}
               download="Amirul-Haziq-Resume.pdf"
@@ -40,25 +42,37 @@ export function Hero() {
               View resume
             </a>
             <a
+              href="#projects"
+              className="rounded-full border border-border px-6 py-3 text-sm font-medium transition hover:bg-card"
+            >
+              Selected work
+            </a>
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
+            <a
               href={PROFILE.github}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-border px-6 py-3 text-sm font-medium transition hover:bg-card"
+              className="hover:text-fg transition"
             >
               GitHub
             </a>
+            <span aria-hidden="true" className="text-border">
+              ·
+            </span>
             <a
               href={PROFILE.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-border px-6 py-3 text-sm font-medium transition hover:bg-card"
+              className="hover:text-fg transition"
             >
               LinkedIn
             </a>
-            <a
-              href={`mailto:${PROFILE.email}`}
-              className="rounded-full border border-border px-6 py-3 text-sm font-medium transition hover:bg-card"
-            >
+            <span aria-hidden="true" className="text-border">
+              ·
+            </span>
+            <a href={`mailto:${PROFILE.email}`} className="hover:text-fg transition">
               Email
             </a>
           </div>
