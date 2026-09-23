@@ -1,10 +1,14 @@
 ---
 title: "How we built AR navigation and registration in the KIZ Super App"
 date: "2026-09-19"
-tags: [AR, Next.js, campus, architecture]
+tags: [AR, Next.js, mobile, campus, architecture]
 ---
 
-Kolej Ibu Zain used to run on WhatsApp groups, paper forms, and notice boards. The KIZ Super App puts residents and college staff on one Next.js app instead. This post is the architecture behind that: how we structured the code, what shipped, how registration unlocks a student, and how the AR directory keeps its arrow steady on a real phone.
+Kolej Ibu Zain used to run on WhatsApp groups, paper forms, and notice boards. The KIZ Super App puts residents and college staff on one Next.js app instead. Registration is usually a stack of forms, queues, and "go to this counter next." AR lets students point their phone at the right place in the physical flow and get guided through what to do next, instead of guessing from a PDF or a pinned notice. It's now live on campus.
+
+I kept the scope tight on purpose. One campus workflow. One feature that has to work in a real hallway, not a demo. Finish it, put it in students' hands, then iterate from what breaks.
+
+This post is the architecture behind that: how we structured the code, what shipped, how registration unlocks a student, and how the AR directory keeps its arrow steady on a real phone.
 
 ## How the app is put together
 
@@ -45,3 +49,5 @@ While they walk, the phone smooths compass heading, measures distance with haver
 ## What I would keep
 
 Ship one campus workflow that has to work in a real hallway. Keep paid map SDKs out until the free path fails. Put matric normalisation and account status in shared libs so login, registration, check-in, and intake sync cannot drift. Keep SPEC and STATUS honest so the next person knows what is done versus what still shakes on a real phone compass.
+
+What's next is less about new features and more about watching how registration actually runs with AR in the loop.
